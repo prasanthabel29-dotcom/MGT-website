@@ -1,0 +1,141 @@
+.container {
+  padding: 50px 20px;
+  max-width: 1200px;
+  margin: auto; /* 🔥 center align */
+}
+
+.heading {
+  text-align: center;
+  margin-bottom: 40px;
+  font-size: 30px;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+/* GRID */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+}
+
+/* CARD */
+.card {
+  background: var(--color-surface);
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  transition: all 0.3s ease;
+  cursor: pointer; /* 🔥 important */
+  position: relative;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* IMAGE */
+.imageBox {
+  position: relative;
+  overflow: hidden;
+}
+
+.imageBox img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  transition: 0.4s;
+}
+
+/* 🔥 IMAGE ZOOM */
+.card:hover img {
+  transform: scale(1.1);
+}
+
+/* AUTHOR */
+.author {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  background: rgba(0,0,0,0.65);
+  color: white;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  backdrop-filter: blur(5px);
+}
+
+/* CONTENT */
+.content {
+  padding: 20px;
+}
+
+.date {
+  font-size: 12px;
+  color: var(--color-text-muted);
+  margin-bottom: 10px;
+}
+
+.content h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: var(--color-text);
+  line-height: 1.4;
+}
+
+/* DESCRIPTION */
+.desc {
+  color: var(--color-text-muted);
+  margin: 10px 0;
+  font-size: 14px;
+}
+
+/* BUTTON */
+.readMore {
+  border: none;
+  background: none;
+  color: var(--color-primary);
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.readMore:hover {
+  text-decoration: underline;
+}
+
+/* ================= RESPONSIVE ================= */
+
+/* Tablet */
+@media (max-width: 992px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .heading {
+    font-size: 24px;
+  }
+
+  .imageBox img {
+    height: 200px;
+  }
+}
+
+/* Small Mobile */
+@media (max-width: 576px) {
+  .container {
+    padding: 40px 15px;
+  }
+
+  .content {
+    padding: 15px;
+  }
+}

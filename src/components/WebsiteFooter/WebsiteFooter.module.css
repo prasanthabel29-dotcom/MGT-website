@@ -1,0 +1,266 @@
+.footer {
+  background: linear-gradient(135deg, #020617, #0f172a, #1e293b);
+  color: #fff;
+  padding: 60px 40px 20px;
+  backdrop-filter: blur(10px);
+}
+
+/* GRID */
+.container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+}
+
+/* COLUMN */
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.column h3 {
+  margin-bottom: 10px;
+}
+
+.column a {
+  display: block;
+  color: #cbd5f5;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.column a:hover {
+  color: #38bdf8;
+}
+
+/* LOGO */
+.logoBox {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logoImg {
+  width: 45px;
+  height: 45px;
+  object-fit: contain;
+}
+
+.logoText {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+/* DESCRIPTION */
+.desc {
+  color: #94a3b8;
+}
+
+/* SOCIAL */
+.social {
+  display: flex;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+/* COMMON ICON */
+.social svg {
+  width: 40px;
+  height: 40px;
+  background: #1e293b;
+  padding: 10px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.3s;
+}
+
+/* EMAIL */
+.iconEmail {
+  color: #f87171;
+}
+
+/* PHONE */
+.iconPhone {
+  color: #22c55e;
+}
+
+/* LOCATION */
+.iconLocation {
+  color: #38bdf8;
+}
+
+/* FACEBOOK */
+.fb {
+  color: #eff2f6;
+}
+.fb:hover {
+  background: #1877f2;
+  color: #fff;
+  transform: translateY(-5px);
+}
+
+/* TWITTER */
+.tw {
+  color: #e8ebed;
+}
+.tw:hover {
+  background: #1da1f2;
+  color: #fff;
+  transform: translateY(-5px);
+}
+
+/* LINKEDIN */
+.li {
+  color: #f1f3f6;
+}
+.li:hover {
+  background: #0a66c2;
+  color: #fff;
+  transform: translateY(-5px);
+}
+
+/* INSTAGRAM */
+.ig {
+  color: #fff;
+}
+.ig:hover {
+  background: linear-gradient(
+    45deg,
+    #f58529,
+    #dd2a7b,
+    #8134af,
+    #515bd4
+  );
+  color: #fff;
+  transform: translateY(-5px);
+}
+
+/* CONTACT */
+.column p {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #84ace4;
+}
+
+/* BOTTOM */
+.bottom {
+  border-top: 1px solid #334155;
+  margin-top: 40px;
+  padding-top: 20px;
+  text-align: center;
+  font-size: 14px;
+  color: #94a3b8;
+}
+
+/* 📱 RESPONSIVE */
+@media (max-width: 992px) {
+  .container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 576px) {
+  .container {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .column {
+    align-items: center;
+  }
+
+  .social {
+    justify-content: center;
+  }
+
+  .column p {
+    justify-content: center;
+  }
+}
+
+/* ============================= */
+/* 📱 Mobile (≤576px) */
+/* ============================= */
+@media (max-width: 576px) {
+ .container {
+  align-items: flex-start;
+}
+
+  .column {
+    align-items: center;
+  }
+
+  .logoBox {
+    justify-content: center;
+  }
+
+  .social {
+    justify-content: center;
+  }
+
+  .column p {
+    justify-content: center;
+  }
+
+  .logoImg {
+    width: 45px;
+    height: 45px;
+  }
+
+  .logoText {
+    font-size: 18px;
+  }
+}
+
+
+
+/* ============================= */
+/* 📲 Tablets (≤768px) */
+/* ============================= */
+@media (max-width: 768px) {
+ .container {
+  align-items: flex-start;
+}
+
+  .logoImg {
+    width: 48px;
+    height: 48px;
+  }
+}
+
+
+
+/* ============================= */
+/* 💻 Small laptops (≤992px) */
+/* ============================= */
+@media (max-width: 992px) {
+  .container {
+  align-items: flex-start;
+}
+}
+
+
+
+/* ============================= */
+/* 🖥️ Desktops (≤1200px) */
+/* ============================= */
+@media (max-width: 1200px) {
+  .footer-wrapper {
+    max-width: 1000px;
+  }
+}
+
+
+
+/* ============================= */
+/* 🖥️ Large screens (≥1201px) */
+/* ============================= */
+@media (min-width: 1201px) {
+  .footer-wrapper {
+    max-width: 1200px;
+  }
+}

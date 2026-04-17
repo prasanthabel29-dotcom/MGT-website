@@ -1,0 +1,88 @@
+.banner {
+  height: 90vh;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* DARK OVERLAY */
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(10, 20, 50, 0.8),
+    rgba(0, 150, 255, 0.3)
+  );
+}
+
+/* CONTENT CENTER */
+.content {
+  position: relative;
+  text-align: center;
+  color: white;
+  max-width: 900px;
+  padding: 20px;
+}
+
+/* HEADING */
+.content h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+/* GRADIENT TEXT */
+.content h1 span {
+  background: linear-gradient(90deg, #3b82f6, #22c55e);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* PARAGRAPH */
+.content p {
+  margin-top: 15px;
+  font-size: 1.2rem;
+  color: #ddd;
+}
+
+/* BUTTONS */
+.buttons {
+  margin-top: 25px;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+/* PRIMARY BUTTON */
+.primary {
+  padding: 12px 25px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(90deg, #3b82f6, #22c55e);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.primary:hover {
+  transform: scale(1.05);
+}
+
+/* SECONDARY BUTTON */
+.secondary {
+  padding: 12px 25px;
+  border-radius: 10px;
+  border: 1px solid #aaa;
+  background: transparent;
+  color: white;
+  cursor: pointer;
+}
+
+.secondary:hover {
+  background: rgba(255,255,255,0.1);
+}

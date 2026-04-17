@@ -1,0 +1,10 @@
+.websiteLayout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; // full screen height
+}
+
+.mainContent {
+  flex: 1; // this pushes footer to bottom
+  padding: 20px; // optional spacing
+}

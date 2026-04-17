@@ -1,0 +1,121 @@
+/* SECTION */
+.overview {
+  padding: 80px 40px;
+  background: linear-gradient(135deg, #0f172a, #1e293b);
+  color: white;
+}
+
+/* CONTAINER */
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 50px;
+}
+
+/* LEFT */
+.left {
+  flex: 1;
+  animation: fadeLeft 1s ease;
+}
+
+.left h2 {
+  font-size: 36px;
+  line-height: 1.4;
+}
+
+.left span {
+  color: #38bdf8;
+}
+
+.left p {
+  margin-top: 15px;
+  color: #cbd5f5;
+}
+
+/* RIGHT */
+.right {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  animation: fadeRight 1s ease;
+}
+
+/* CARD */
+.card {
+  background: #1e293b;
+  padding: 30px;
+  border-radius: 15px;
+  text-align: center;
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  background: #334155;
+}
+
+.card h3 {
+  font-size: 28px;
+  color: #38bdf8;
+}
+
+.card p {
+  margin-top: 8px;
+  color: #cbd5f5;
+}
+
+/* ANIMATION */
+@keyframes fadeLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* 📱 MOBILE */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .right {
+    grid-template-columns: 1fr;
+  }
+
+  .left h2 {
+    font-size: 26px;
+  }
+}
+/* HIDE INITIAL */
+.left,
+.right {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s ease;
+}
+
+/* SHOW WHEN SCROLL */
+.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* CARD hover already irukattum */

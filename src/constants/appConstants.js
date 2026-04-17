@@ -1,0 +1,31 @@
+export const HTTP_STATUS = {
+  OK: 200,
+  CREATED: 201,
+  NO_CONTENT: 204,
+  BAD_REQUEST: 400,
+  UNAUTHORIZED: 401,
+  FORBIDDEN: 403,
+  NOT_FOUND: 404,
+  UNPROCESSABLE: 422,
+  SERVER_ERROR: 500,
+};
+
+export const QUERY_KEYS = {
+  AUTH_USER: 'authUser',
+  USERS: 'users',
+  DASHBOARD_STATS: 'dashboardStats',
+};
+
+export const PAGINATION = {
+  DEFAULT_PAGE: 1,
+  DEFAULT_PAGE_SIZE: 10,
+  PAGE_SIZE_OPTIONS: [10, 25, 50, 100],
+};
+
+export const DATE_FORMATS = {
+  DISPLAY: 'DD MMM YYYY',
+  DISPLAY_WITH_TIME: 'DD MMM YYYY, HH:mm',
+  API: 'YYYY-MM-DD',
+};
+
+export const NOTIFICATION_DURATION = 4000; // ms

@@ -1,0 +1,47 @@
+.header {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  padding: 15px 40px;
+  background: #fff;
+}
+
+.logoContainer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo {
+  width: 45px;
+}
+
+.logoText {
+  font-size: 20px;
+  font-weight: bold;
+  color: #2563eb;
+}
+
+.nav {
+  display: flex;
+  justify-self: center;
+  gap: 25px;
+}
+
+.link {
+  text-decoration: none;
+  color: #555;
+}
+
+.active {
+  color: #2563eb;
+  border-bottom: 2px solid #2563eb;
+}
+
+.button {
+  padding: 10px 20px;
+  border-radius: 25px;
+  background: linear-gradient(to right, #3b82f6, #22c55e);
+  color: white;
+  text-decoration: none;
+}
