@@ -1,20 +1,39 @@
-/* ================= HEADER ================= */
+/* HEADER */
 .header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 15px 40px;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 15px 40px;
-  background: var(--color-bg);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
+
+  background: var(--bg-main);
+  color: var(--text-main);
+
+  z-index: 999;
+  transition: 0.3s;
 }
 
-/* ================= LOGO ================= */
+/* LOGO */
+/* LOGO FIX - underline remove */
 .logo {
   display: flex;
   align-items: center;
   gap: 10px;
+  text-decoration: none !important;   /* 🔥 important */
+}
+
+.logo:hover,
+.logo:focus,
+.logo:active {
+  text-decoration: none !important;   /* 🔥 ensure no underline */
+}
+
+/* extra safety */
+.logo::after {
+  display: none !important;
 }
 
 .logoImg {
@@ -24,33 +43,44 @@
 .logoText {
   font-size: 20px;
   font-weight: 700;
-  color: var(--color-primary);
+  color: var(--text-main);
 }
 
-/* ================= NAV ================= */
+/* NAV */
 .nav {
   display: flex;
   gap: 30px;
 }
 
+/* LINK */
 .link {
-  color: var(--color-text);
-  padding: 6px 10px;
-  border-radius: 6px;
+  text-decoration: none;
+  color: var(--text-main);
+  position: relative;
+}
+
+/* ACTIVE */
+.active {
+  color: #3b82f6;
+}
+
+/* UNDERLINE */
+.link::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: #3b82f6;
   transition: 0.3s;
 }
 
-.link:hover {
-  background: var(--color-bg-secondary);
-  color: var(--color-primary);
+.link:hover::after {
+  width: 100%;
 }
 
-.active {
-  color: var(--color-primary);
-  background: var(--color-bg-secondary);
-}
-
-/* ================= ACTIONS ================= */
+/* ACTIONS */
 .actions {
   display: flex;
   gap: 10px;
@@ -61,46 +91,38 @@
   width: 40px;
   height: 40px;
   border-radius: 10px;
-  background: var(--color-border);
   border: none;
+
+  background: var(--card-bg);
+  color: var(--text-main);
   cursor: pointer;
-  transition: 0.3s;
 }
 
-.iconBtn:hover {
-  background: var(--color-primary);
-  color: white;
-}
-
-/* ================= BUTTON ================= */
+/* BUTTON */
 .button {
   padding: 10px 20px;
   border-radius: 20px;
-  background: var(--color-primary);
+  background: linear-gradient(135deg, #4f46e5, #22c55e);
   color: white;
-  transition: 0.3s;
+  text-decoration: none;
 }
 
-.button:hover {
-  opacity: 0.9;
-}
-
-/* ================= OVERLAY ================= */
+/* OVERLAY */
 .overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.4);
-  z-index: 999;
+  background: rgba(0,0,0,0.4);
 }
 
-/* ================= MOBILE MENU ================= */
+/* MOBILE MENU */
 .mobileMenu {
-  position: fixed; /* 🔥 FIX */
+  position: fixed;
   top: 0;
   right: 0;
   width: 75%;
   height: 100vh;
-  background: var(--color-surface);
+
+  background: var(--bg-main);
   padding: 25px;
 
   display: flex;
@@ -109,64 +131,31 @@
 
   transform: translateX(100%);
   transition: 0.3s;
-  z-index: 1001;
 }
 
-/* OPEN */
 .show {
   transform: translateX(0);
 }
 
 /* MOBILE LINKS */
 .mobileLink {
-  color: var(--color-text);
-  font-size: 18px;
-  padding: 10px;
-  border-radius: 8px;
-  transition: 0.3s;
-}
-
-.mobileLink:hover {
-  background: var(--color-bg-secondary);
-  color: var(--color-primary);
+  text-decoration: none;
+  color: var(--text-main);
 }
 
 /* MOBILE BUTTON */
 .mobileButton {
-  margin-top: 10px;
   padding: 12px;
   text-align: center;
   border-radius: 10px;
-  background: var(--color-primary);
+  background: linear-gradient(135deg, #4f46e5, #22c55e);
   color: white;
 }
 
-/* ================= MOBILE ================= */
+/* MOBILE */
 @media (max-width: 768px) {
-
-  .header {
-    padding: 12px 20px;
-  }
-
   .nav,
   .button {
-    display: none;
-  }
-
-  .logoText {
-    font-size: 16px;
-  }
-}
-
-/* ================= DESKTOP ================= */
-@media (min-width: 769px) {
-
-  .mobileMenu {
-    display: none;
-  }
-
-  /* hide ☰ menu button */
-  .iconBtn:nth-child(2) {
     display: none;
   }
 }

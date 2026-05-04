@@ -2,18 +2,24 @@ import React from "react";
 import BannerSection from "./sections/bannersection/bannersection";
 import MissionSection from "./sections/MissionSection/MissionSection";
 import Overview from "./sections/Overview/Overview";
+import Services from "./sections/services/services"; // ✅ add
+import TestimonialsSection from "./sections/Testimonials/Testimonials";
+import FAQ from "./sections/FAQ/FAQ";
+
 
 function HomePage() {
   return (
     <>
-      {/* 1️⃣ HERO */}
+      {/* 🔥 FULL WIDTH BANNER */}
       <BannerSection />
 
-      {/* 2️⃣ VISION + MISSION */}
-      <MissionSection />
-
-      {/* 3️⃣ OVERVIEW (👇 BELOW MISSION) */}
-      <Overview />
+<div className="container">
+  <MissionSection />
+  <Overview />
+ <Services showTitle={true} />
+  <TestimonialsSection />
+  <FAQ />
+</div>
     </>
   );
 }

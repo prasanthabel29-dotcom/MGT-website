@@ -1,16 +1,13 @@
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import styles from "./Header.module.scss";
 import logo from "../../assets/logo.png";
 
 function WebsiteHeader() {
-  const location = useLocation();
-
   const navLinks = [
     { name: "Home", path: "/" },
     { name: "About", path: "/about" },
     { name: "Services", path: "/services" },
-    
     { name: "Portfolio", path: "/portfolio" },
     { name: "Testimonials", path: "/testimonials" },
     { name: "Contact", path: "/contact" },
@@ -19,33 +16,31 @@ function WebsiteHeader() {
   return (
     <header className={styles.header}>
       
-      {/* LOGO */}
-      <div className={styles.logoContainer}>
+      {/* LOGO CLICK → HOME */}
+      <NavLink to="/" className={styles.logoContainer}>
         <img src={logo} alt="logo" className={styles.logo} />
         <span className={styles.logoText}>MAJESTY GLOBAL</span>
-      </div>
+      </NavLink>
 
       {/* NAV */}
       <nav className={styles.nav}>
         {navLinks.map((link) => (
-          <Link
+          <NavLink
             key={link.path}
             to={link.path}
-            className={
-              location.pathname === link.path
-                ? styles.active
-                : styles.link
+            className={({ isActive }) =>
+              `${styles.link} ${isActive ? styles.active : ""}`
             }
           >
             {link.name}
-          </Link>
+          </NavLink>
         ))}
       </nav>
 
       {/* BUTTON */}
-      <Link to="/contact" className={styles.button}>
+      <NavLink to="/contact" className={styles.button}>
         Get Started
-      </Link>
+      </NavLink>
 
     </header>
   );

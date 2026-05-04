@@ -1,0 +1,151 @@
+/* CONTAINER */
+.container {
+  max-width: 1100px;
+  margin: auto;
+  padding: 30px 20px 60px;
+}
+
+/* 🔥 SMALL CLEAN BANNER */
+/* 🔥 SMALLER BANNER */
+.banner {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 8px; /* less gap */
+}
+
+.banner img {
+  width: 100%;
+  max-width: 800px;   /* control width */
+  height: 50px;       /* 🔥 smaller height */
+
+  object-fit: cover;
+  object-position: center;
+
+  border-radius: 14px;
+  display: block;
+}
+
+/* TOP BAR */
+/* TOP BAR */
+.topBar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* 🔥 left align */
+  margin-bottom: 20px;
+}
+
+/* BACK BUTTON */
+.back {
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+/* CARD */
+.card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+
+  max-width: 1000px;
+  margin: auto;
+
+  background: #fff;
+  border-radius: 25px;
+  padding: 40px;
+
+  box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+  align-items: center;
+
+  opacity: 0;
+  transform: translateY(60px);
+  transition: 0.8s ease;
+}
+
+.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* IMAGE */
+.imageWrap {
+  overflow: hidden;
+  border-radius: 15px;
+}
+
+.imageWrap img {
+  width: 100%;
+  max-width: 420px;
+  display: block;
+  margin: auto;
+  transition: transform 0.6s ease;
+}
+
+.imageWrap:hover img {
+  transform: scale(1.08);
+}
+
+/* CONTENT */
+.content {
+  opacity: 0;
+  transform: translateX(60px);
+  transition: 0.8s ease 0.2s;
+}
+
+.show .content {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.content h1 {
+  font-size: 30px;
+  margin-bottom: 12px;
+}
+
+.content p {
+  color: #555;
+  margin-bottom: 20px;
+  line-height: 1.7;
+}
+
+.content ul {
+  list-style: none;
+  padding: 0;
+}
+
+.content li {
+  margin-bottom: 10px;
+  display: flex;
+  gap: 8px;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .banner img {
+    height: 100px;
+  }
+
+  .card {
+    grid-template-columns: 1fr;
+    padding: 25px;
+    text-align: center;
+  }
+
+  .content {
+    transform: translateY(30px);
+    text-align: center;
+  }
+
+  .show .content {
+    transform: translateY(0);
+  }
+
+  .back {
+    position: static;
+    margin-bottom: 10px;
+  }
+}

@@ -1,28 +1,29 @@
 .footer {
   background: linear-gradient(135deg, #020617, #0f172a, #1e293b);
-  color: #fff;
-  padding: 60px 40px 20px;
-  backdrop-filter: blur(10px);
+  color: #f1f5f9;
+  padding: 70px 60px 25px; /* 🔥 premium spacing increase */
 }
 
 /* GRID */
 .container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 40px;
+  gap: 50px; /* 🔥 overall spacing */
 }
 
 /* COLUMN */
 .column {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 14px;
 }
 
 .column h3 {
-  margin-bottom: 10px;
+  margin-bottom: 12px;
+  color: #ffffff;
 }
 
+/* LINKS */
 .column a {
   display: block;
   color: #cbd5f5;
@@ -32,13 +33,14 @@
 
 .column a:hover {
   color: #38bdf8;
+  text-shadow: 0 0 8px rgba(56, 189, 248, 0.6);
 }
 
 /* LOGO */
 .logoBox {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
 }
 
 .logoImg {
@@ -50,21 +52,25 @@
 .logoText {
   font-size: 20px;
   font-weight: bold;
+  color: #ffffff;
 }
 
 /* DESCRIPTION */
 .desc {
-  color: #94a3b8;
+  color: #cbd5f5;
+  font-size: 14px;
+  line-height: 1.7;
+  max-width: 260px;
 }
 
 /* SOCIAL */
 .social {
   display: flex;
-  gap: 15px;
-  margin-top: 10px;
+  gap: 14px;
+  margin-top: 12px;
 }
 
-/* COMMON ICON */
+/* ICON BASE */
 .social svg {
   width: 40px;
   height: 40px;
@@ -75,192 +81,124 @@
   align-items: center;
   justify-content: center;
   transition: 0.3s;
+  color: #cbd5f5;
 }
 
-/* EMAIL */
-.iconEmail {
-  color: #f87171;
-}
+/* CONTACT ICON COLORS */
+.iconEmail { color: #f87171; }
+.iconPhone { color: #22c55e; }
+.iconLocation { color: #38bdf8; }
 
-/* PHONE */
-.iconPhone {
-  color: #22c55e;
-}
-
-/* LOCATION */
-.iconLocation {
-  color: #38bdf8;
-}
-
-/* FACEBOOK */
-.fb {
-  color: #eff2f6;
-}
+/* SOCIAL HOVER */
 .fb:hover {
   background: #1877f2;
   color: #fff;
-  transform: translateY(-5px);
-}
-
-/* TWITTER */
-.tw {
-  color: #e8ebed;
+  transform: translateY(-5px) scale(1.05);
 }
 .tw:hover {
   background: #1da1f2;
   color: #fff;
-  transform: translateY(-5px);
-}
-
-/* LINKEDIN */
-.li {
-  color: #f1f3f6;
+  transform: translateY(-5px) scale(1.05);
 }
 .li:hover {
   background: #0a66c2;
   color: #fff;
-  transform: translateY(-5px);
-}
-
-/* INSTAGRAM */
-.ig {
-  color: #fff;
+  transform: translateY(-5px) scale(1.05);
 }
 .ig:hover {
-  background: linear-gradient(
-    45deg,
-    #f58529,
-    #dd2a7b,
-    #8134af,
-    #515bd4
-  );
+  background: linear-gradient(45deg,#f58529,#dd2a7b,#8134af,#515bd4);
   color: #fff;
-  transform: translateY(-5px);
+  transform: translateY(-5px) scale(1.05);
 }
 
-/* CONTACT */
+/* CONTACT TEXT */
 .column p {
   display: flex;
   align-items: center;
   gap: 10px;
-  color: #84ace4;
+  color: #cbd5f5;
 }
 
 /* BOTTOM */
 .bottom {
   border-top: 1px solid #334155;
-  margin-top: 40px;
+  margin-top: 50px;
   padding-top: 20px;
   text-align: center;
   font-size: 14px;
   color: #94a3b8;
 }
 
-/* 📱 RESPONSIVE */
-@media (max-width: 992px) {
+/* ================= FIXED SERVICES ALIGNMENT ================= */
+.servicesGrid {
+  display: grid;
+  grid-template-columns: repeat(2, max-content); /* 🔥 tight fit columns */
+  column-gap: 25px; /* 🔥 reduced gap (main fix) */
+  row-gap: 6px;
+  justify-content: start; /* 🔥 left align */
+}
+
+.servicesGrid div {
+  display: flex;
+  flex-direction: column;
+}
+
+.servicesGrid a {
+  display: block;
+  padding: 2px 0; /* 🔥 reduced vertical spacing */
+  line-height: 1.4;
+  white-space: nowrap; /* 🔥 prevents weird wrapping gaps */
+}
+
+/* 📱 Mobile */
+@media (max-width: 575px) {
+  .footer {
+    padding: 50px 20px 20px;
+  }
+
+  .container {
+    grid-template-columns: 1fr;
+    gap: 35px;
+  }
+
+  .servicesGrid {
+    grid-template-columns: 1fr; /* 🔥 stack */
+  }
+
+  .desc {
+    max-width: 100%;
+  }
+}
+
+/* 📱 Small Devices */
+@media (min-width: 576px) and (max-width: 767px) {
+  .container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+  }
+
+  .servicesGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* 📱 Tablets */
+@media (min-width: 768px) and (max-width: 991px) {
   .container {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-@media (max-width: 576px) {
+/* 💻 Laptops */
+@media (min-width: 992px) and (max-width: 1199px) {
   .container {
-    grid-template-columns: 1fr;
-    text-align: center;
-  }
-
-  .column {
-    align-items: center;
-  }
-
-  .social {
-    justify-content: center;
-  }
-
-  .column p {
-    justify-content: center;
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
-/* ============================= */
-/* 📱 Mobile (≤576px) */
-/* ============================= */
-@media (max-width: 576px) {
- .container {
-  align-items: flex-start;
-}
-
-  .column {
-    align-items: center;
-  }
-
-  .logoBox {
-    justify-content: center;
-  }
-
-  .social {
-    justify-content: center;
-  }
-
-  .column p {
-    justify-content: center;
-  }
-
-  .logoImg {
-    width: 45px;
-    height: 45px;
-  }
-
-  .logoText {
-    font-size: 18px;
-  }
-}
-
-
-
-/* ============================= */
-/* 📲 Tablets (≤768px) */
-/* ============================= */
-@media (max-width: 768px) {
- .container {
-  align-items: flex-start;
-}
-
-  .logoImg {
-    width: 48px;
-    height: 48px;
-  }
-}
-
-
-
-/* ============================= */
-/* 💻 Small laptops (≤992px) */
-/* ============================= */
-@media (max-width: 992px) {
+/* 🖥 Desktop */
+@media (min-width: 1200px) {
   .container {
-  align-items: flex-start;
-}
-}
-
-
-
-/* ============================= */
-/* 🖥️ Desktops (≤1200px) */
-/* ============================= */
-@media (max-width: 1200px) {
-  .footer-wrapper {
-    max-width: 1000px;
-  }
-}
-
-
-
-/* ============================= */
-/* 🖥️ Large screens (≥1201px) */
-/* ============================= */
-@media (min-width: 1201px) {
-  .footer-wrapper {
-    max-width: 1200px;
+    grid-template-columns: repeat(4, 1fr);
   }
 }

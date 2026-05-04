@@ -5,6 +5,6 @@
 }
 
 .mainContent {
-  flex: 1; // this pushes footer to bottom
-  padding: 20px; // optional spacing
+  flex: 1;
+  padding: 0;   /* 🔥 REMOVE GAP */
 }

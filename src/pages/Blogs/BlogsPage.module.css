@@ -1,43 +1,90 @@
-.container {
-  padding: 50px 20px;
-  max-width: 1200px;
-  margin: auto; /* 🔥 center align */
+/* 🔥 RESET */
+body {
+  margin: 0;
+  padding: 0;
 }
 
-.heading {
-  text-align: center;
-  margin-bottom: 40px;
-  font-size: 30px;
-  font-weight: 700;
-  color: var(--color-text);
+#root {
+  padding: 0;
 }
 
-/* GRID */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 30px;
-}
-
-/* CARD */
-.card {
-  background: var(--color-surface);
-  border-radius: 15px;
-  overflow: hidden;
-  box-shadow: var(--shadow-md);
-  transition: all 0.3s ease;
-  cursor: pointer; /* 🔥 important */
+/* 🔥 BANNER */
+.banner {
   position: relative;
-}
-
-.card:hover {
-  transform: translateY(-8px);
-  box-shadow: var(--shadow-lg);
+  width: 100%;
+  height: 280px;
+  overflow: hidden;
 }
 
 /* IMAGE */
+.banner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* 🔥 OVERLAY CENTER */
+.overlay {
+  position: absolute;
+  inset: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+  color: #fff;
+
+  padding: 0 20px;
+}
+
+/* TEXT */
+.overlay h1 {
+  font-size: 48px;
+  font-weight: 700;
+  margin: 0;
+  position: relative;
+  top: 10px;
+}
+
+/* SUB HEADING */
+.subHeading {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.subHeading h2 {
+  font-size: 28px;
+  font-weight: 600;
+  color: #333;
+  margin: 0;
+}
+
+.subHeading span {
+  color: #3b82f6;
+}
+
+/* CONTAINER */
+.container {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 10px 20px;
+}
+
+/* GRID DEFAULT */
+.grid {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 20px;
+  overflow-x: auto;
+}
+
+/* IMAGE BOX */
 .imageBox {
   position: relative;
+  border-radius: 15px;
   overflow: hidden;
 }
 
@@ -45,97 +92,99 @@
   width: 100%;
   height: 220px;
   object-fit: cover;
-  transition: 0.4s;
-}
-
-/* 🔥 IMAGE ZOOM */
-.card:hover img {
-  transform: scale(1.1);
 }
 
 /* AUTHOR */
 .author {
   position: absolute;
-  bottom: 12px;
-  left: 12px;
-  background: rgba(0,0,0,0.65);
-  color: white;
-  padding: 6px 12px;
+  bottom: 10px;
+  left: 10px;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 5px 10px;
   border-radius: 20px;
-  font-size: 12px;
-  backdrop-filter: blur(5px);
+  color: #fff;
+  font-size: 13px;
 }
 
 /* CONTENT */
 .content {
-  padding: 20px;
+  padding: 10px 5px;
 }
 
 .date {
-  font-size: 12px;
-  color: var(--color-text-muted);
-  margin-bottom: 10px;
+  font-size: 14px;
+  color: #777;
+  margin-bottom: 8px;
 }
 
 .content h3 {
-  font-size: 18px;
-  margin-bottom: 10px;
-  color: var(--color-text);
-  line-height: 1.4;
+  font-size: 20px;
+  margin: 0 0 10px;
+  color: #222;
 }
 
-/* DESCRIPTION */
 .desc {
-  color: var(--color-text-muted);
-  margin: 10px 0;
-  font-size: 14px;
+  color: #555;
+  font-size: 15px;
+  line-height: 1.6;
 }
 
-/* BUTTON */
+/* READ MORE */
 .readMore {
-  border: none;
-  background: none;
-  color: var(--color-primary);
-  font-weight: 600;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.readMore:hover {
-  text-decoration: underline;
+  color: #3b82f6;
+  font-weight: 500;
+  font-size: 15px;
 }
 
 /* ================= RESPONSIVE ================= */
 
-/* Tablet */
-@media (max-width: 992px) {
-  .grid {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-/* Mobile */
-@media (max-width: 768px) {
+/* 📱 Mobile (0px - 575px) */
+@media (min-width: 0px) and (max-width: 575px) {
   .grid {
     grid-template-columns: 1fr;
   }
 
-  .heading {
-    font-size: 24px;
+  .overlay h1 {
+    font-size: 28px;
   }
 
-  .imageBox img {
+  .banner {
     height: 200px;
   }
 }
 
-/* Small Mobile */
-@media (max-width: 576px) {
-  .container {
-    padding: 40px 15px;
+/* 📱 Small Devices (576px - 767px) */
+@media (min-width: 576px) and (max-width: 767px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 
-  .content {
-    padding: 15px;
+  .overlay h1 {
+    font-size: 32px;
+  }
+}
+
+/* 📱 Tablets (768px - 991px) */
+@media (min-width: 768px) and (max-width: 991px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .overlay h1 {
+    font-size: 36px;
+  }
+}
+
+/* 💻 Laptops (992px - 1199px) */
+@media (min-width: 992px) and (max-width: 1199px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* 🖥 Desktop (1200px and above) */
+@media (min-width: 1200px) {
+  .grid {
+    grid-template-columns: repeat(4, 1fr);
   }
 }

@@ -3,75 +3,75 @@ import { Routes, Route } from "react-router-dom";
 
 import ErrorBoundary from "./components/ErrorBoundary/ErrorBoundary";
 import PageLoader from "./components/Loaders/PageLoader";
-
-import MainLayout from "./layouts/MainLayout/MainLayout";
-import AuthLayout from "./layouts/AuthLayout/AuthLayout";
 import WebsiteLayout from "./layouts/WebsiteLayout/WebsiteLayout";
 
-import ProtectedRoute from "./routes/ProtectedRoute";
-import RoleGuard from "./routes/RoleGuard";
-import { ROLES } from "./constants/roles";
-
-// ─── Lazy Pages ─────────────────────────────
-const LoginPage = React.lazy(() => import("./pages/Auth/LoginPage"));
-const RegisterPage = React.lazy(() => import("./pages/Auth/RegisterPage"));
-
-const DashboardPage = React.lazy(() => import("./pages/Dashboard/DashboardPage"));
-const UsersPage = React.lazy(() => import("./pages/Users/UsersPage"));
-
-const NotFoundPage = React.lazy(() => import("./pages/NotFound/NotFoundPage"));
-
+// LAZY PAGES
 const HomePage = React.lazy(() => import("./pages/Home/HomePage"));
-const ServicesPage = React.lazy(() => import("./pages/Services/ServicesPage"));
+const AboutPage = React.lazy(() => import("./pages/About/AboutPage"));
+const ContactPage = React.lazy(() => import("./pages/Contact/ContactPage"));
 
-// 🔥 BLOGS
+const ServicesPage = React.lazy(() =>
+  import("./pages/Home/sections/services/ServicesPage")
+);
+const ServiceDetails = React.lazy(() =>
+  import("./pages/Home/sections/services/servicesdetails")
+);
+
 const BlogsPage = React.lazy(() => import("./pages/Blogs/BlogsPage"));
 const BlogDetails = React.lazy(() => import("./pages/Blogs/BlogDetails"));
+
+const Portfolio = React.lazy(() =>
+  import("./pages/Home/sections/Portfolio/Portfolio")
+);
+const PortfolioDetails = React.lazy(() =>
+  import("./pages/Home/sections/Portfolio/PortfolioDetails")
+);
+
+const Testimonials = React.lazy(() =>
+  import("./pages/Home/sections/Testimonials/Testimonials")
+);
+const TestimonialsDetails = React.lazy(() =>
+  import("./pages/Home/sections/Testimonials/TestimonialsDetails")
+);
+
+const CareersPage = React.lazy(() =>
+  import("./pages/Home/sections/Careers/Careerspages")
+);
+
+const NotFoundPage = React.lazy(() =>
+  import("./pages/NotFound/NotFoundPage")
+);
 
 function App() {
   return (
     <ErrorBoundary>
       <Suspense fallback={<PageLoader />}>
-
         <Routes>
+          <Route path="/" element={<WebsiteLayout />}>
 
-          {/* 🌐 WEBSITE ROUTES */}
-          <Route element={<WebsiteLayout />}>
+            <Route index element={<HomePage />} />
 
-            <Route path="/" element={<HomePage />} />
-            <Route path="/services" element={<ServicesPage />} />
+            <Route path="about" element={<AboutPage />} />
+            <Route path="contact" element={<ContactPage />} />
 
-            {/* 🔥 BLOG ROUTES */}
-            <Route path="/blogs" element={<BlogsPage />} />
-            <Route path="/blogs/:id" element={<BlogDetails />} />
+            {/* ✅ ONLY THIS */}
+            <Route path="services" element={<ServicesPage />} />
+            <Route path="services/:id" element={<ServiceDetails />} />
 
+            <Route path="portfolio" element={<Portfolio />} />
+            <Route path="portfolio/:id" element={<PortfolioDetails />} />
+
+            <Route path="blogs" element={<BlogsPage />} />
+            <Route path="blogs/:id" element={<BlogDetails />} />
+
+            <Route path="testimonials" element={<Testimonials />} />
+            <Route path="testimonials/:id" element={<TestimonialsDetails />} />
+
+            <Route path="careers" element={<CareersPage />} />
           </Route>
 
-          {/* 🔐 AUTH ROUTES */}
-          <Route element={<AuthLayout />}>
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/register" element={<RegisterPage />} />
-          </Route>
-
-          {/* 🔒 PROTECTED ROUTES */}
-          <Route element={<ProtectedRoute />}>
-            <Route element={<MainLayout />}>
-
-              <Route path="/dashboard" element={<DashboardPage />} />
-
-              {/* 👑 ADMIN ONLY */}
-              <Route element={<RoleGuard allowed={[ROLES.ADMIN]} />}>
-                <Route path="/users" element={<UsersPage />} />
-              </Route>
-
-            </Route>
-          </Route>
-
-          {/* ❌ 404 */}
           <Route path="*" element={<NotFoundPage />} />
-
         </Routes>
-
       </Suspense>
     </ErrorBoundary>
   );

@@ -8,59 +8,51 @@ function WebsiteHeader() {
 
   const [open, setOpen] = useState(false);
   const [dark, setDark] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
-  // ================= LOAD THEME =================
+  // 🔥 SCROLL DETECT
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 60);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // 🔥 THEME LOAD
   useEffect(() => {
     const saved = localStorage.getItem("theme");
-
     if (saved === "dark") {
       setDark(true);
       document.documentElement.setAttribute("data-theme", "dark");
     }
   }, []);
 
-  // ================= TOGGLE THEME =================
+  // 🔥 THEME TOGGLE
   const toggleTheme = () => {
-    if (dark) {
-      document.documentElement.setAttribute("data-theme", "light");
-      localStorage.setItem("theme", "light");
-    } else {
-      document.documentElement.setAttribute("data-theme", "dark");
-      localStorage.setItem("theme", "dark");
-    }
+    const newTheme = dark ? "light" : "dark";
+    document.documentElement.setAttribute("data-theme", newTheme);
+    localStorage.setItem("theme", newTheme);
     setDark(!dark);
   };
 
-  // ================= CLOSE MENU EVENTS =================
+  // 🔥 BODY LOCK
   useEffect(() => {
-    const handleEsc = (e) => {
-      if (e.key === "Escape") setOpen(false);
-    };
-
-    document.addEventListener("keydown", handleEsc);
-
-    // prevent scroll when menu open
     document.body.style.overflow = open ? "hidden" : "auto";
-
-    return () => {
-      document.removeEventListener("keydown", handleEsc);
-      document.body.style.overflow = "auto";
-    };
   }, [open]);
 
-  // ================= NAV LINKS =================
   const navLinks = [
     { name: "Home", path: "/" },
     { name: "About", path: "/about" },
     { name: "Services", path: "/services" },
-    { name: "Portfolio", path: "/portfolio" },
-    { name: "Testimonials", path: "/testimonials" },
-     { name: "Blogs", path: "/blogs" }, 
+    { name: "Careers", path: "/careers" },
+    { name: "Blogs", path: "/blogs" },
     { name: "Contact", path: "/contact" },
   ];
 
   return (
-    <header className={styles.header}>
+    <header className={`${styles.header} ${scrolled ? styles.scrolled : ""}`}>
 
       {/* LOGO */}
       <Link to="/" className={styles.logo}>
@@ -68,7 +60,7 @@ function WebsiteHeader() {
         <span className={styles.logoText}>MAJESTY GLOBAL</span>
       </Link>
 
-      {/* DESKTOP NAV */}
+      {/* NAV */}
       <nav className={styles.nav}>
         {navLinks.map((link) => (
           <Link
@@ -85,37 +77,25 @@ function WebsiteHeader() {
 
       {/* ACTIONS */}
       <div className={styles.actions}>
-
-        {/* DARK MODE */}
-        <button
-          className={styles.iconBtn}
-          onClick={toggleTheme}
-          aria-label="Toggle Theme"
-        >
+        <button className={styles.iconBtn} onClick={toggleTheme}>
           {dark ? "☀️" : "🌙"}
         </button>
 
-        {/* MENU BUTTON */}
         <button
           className={styles.iconBtn}
           onClick={() => setOpen(!open)}
-          aria-label="Toggle Menu"
         >
           ☰
         </button>
 
-        {/* DESKTOP BUTTON */}
         <Link to="/contact" className={styles.button}>
           Get Started
         </Link>
       </div>
 
-      {/* OVERLAY (click outside close) */}
+      {/* OVERLAY */}
       {open && (
-        <div
-          className={styles.overlay}
-          onClick={() => setOpen(false)}
-        />
+        <div className={styles.overlay} onClick={() => setOpen(false)} />
       )}
 
       {/* MOBILE MENU */}
@@ -131,11 +111,7 @@ function WebsiteHeader() {
           </Link>
         ))}
 
-        <Link
-          to="/contact"
-          className={styles.mobileButton}
-          onClick={() => setOpen(false)}
-        >
+        <Link to="/contact" className={styles.mobileButton}>
           Get Started
         </Link>
       </div>

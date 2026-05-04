@@ -1,15 +1,48 @@
+:root {
+  --faq-bg: #f3f4f6;
+  --card-bg: #e5e7eb;
+  --card-hover: #d1d5db;
+
+  --text-main: #111827;
+  --text-sub: #6b7280;
+  --text-answer: #4b5563;
+
+  --border: #d1d5db;
+  --btn-bg: #f9f9f9;
+}
+
+/* 🌙 DARK MODE */
+[data-theme="dark"] {
+  --faq-bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+
+  --text-main: #f9fafb;
+  --text-sub: #cbd5f5;
+  --text-answer: #94a3b8;
+
+  --border: #334155;
+  --btn-bg: #1e293b;
+}
+
 .header {
   display: grid;
   grid-template-columns: auto 1fr auto;
   align-items: center;
   padding: 15px 40px;
   background: #fff;
+
+  position: sticky;
+  top: 0;
+  z-index: 9999;
 }
 
+/* LOGO */
 .logoContainer {
   display: flex;
   align-items: center;
   gap: 10px;
+  text-decoration: none;
 }
 
 .logo {
@@ -22,26 +55,123 @@
   color: #2563eb;
 }
 
+/* NAV */
 .nav {
   display: flex;
   justify-self: center;
   gap: 25px;
 }
 
-.link {
+/* LINK */
+.link,
+.active {
+  position: relative;
   text-decoration: none;
   color: #555;
+  padding: 5px 0;
+}
+
+/* underline */
+.link::after,
+.active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0%;
+  height: 2px;
+  background: #2563eb;
+  transition: width 0.3s ease;
+}
+
+/* no hover underline */
+.link:hover::after {
+  width: 0%;
+}
+
+/* active underline */
+.active::after {
+  width: 100%;
 }
 
 .active {
   color: #2563eb;
-  border-bottom: 2px solid #2563eb;
 }
 
+/* BUTTON */
 .button {
   padding: 10px 20px;
   border-radius: 25px;
   background: linear-gradient(to right, #3b82f6, #22c55e);
   color: white;
   text-decoration: none;
+}
+
+/* 📱 Mobile (0px - 575px) */
+@media (min-width: 0px) and (max-width: 575px) {
+  .header {
+    grid-template-columns: auto auto;
+    padding: 12px 15px;
+  }
+
+  .nav {
+    display: none;
+  }
+
+  .button {
+    display: none;
+  }
+
+  .logo {
+    width: 32px;
+  }
+
+  .logoText {
+    font-size: 16px;
+  }
+}
+
+/* 📱 Small Devices (576px - 767px) */
+@media (min-width: 576px) and (max-width: 767px) {
+  .header {
+    grid-template-columns: auto auto;
+    padding: 12px 20px;
+  }
+
+  .nav {
+    display: none;
+  }
+
+  .button {
+    display: none;
+  }
+
+  .logoText {
+    font-size: 18px;
+  }
+}
+
+/* 📱 Tablets (768px - 991px) */
+@media (min-width: 768px) and (max-width: 991px) {
+  .header {
+    padding: 14px 25px;
+  }
+
+  .nav {
+    gap: 18px;
+  }
+}
+
+/* 💻 Laptops (992px - 1199px) */
+@media (min-width: 992px) and (max-width: 1199px) {
+  .nav {
+    gap: 22px;
+  }
+}
+
+/* 🖥 Desktop (1200px and above) */
+@media (min-width: 1200px) {
+  .nav {
+    gap: 25px;
+  }
 }
