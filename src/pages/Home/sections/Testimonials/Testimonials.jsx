@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import styles from "./Testimonials.module.css";
 import bg from "../../../../assets/testimonialh.jpg";
 
@@ -51,41 +52,57 @@ function TestimonialsSection() {
   };
 
   return (
-    <section className={styles.wrapper}>
-      
+    <motion.section
+      className={styles.wrapper}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.45 }}
+    >
       {/* LEFT IMAGE */}
-      <div
+      <motion.div
         className={styles.left}
         style={{ backgroundImage: `url(${bg})` }}
-      ></div>
+        initial={{ opacity: 0, x: -24 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+      />
 
       {/* RIGHT CONTENT */}
       <div className={styles.right}>
-        
-        {/* 🔥 SLIDE BLOCK */}
-        <div key={index} className={styles.slide}>
-          <p className={styles.tag}>TESTIMONIAL</p>
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={index}
+            className={styles.slide}
+            initial={{ opacity: 0, x: 16 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -12 }}
+            transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <p className={styles.tag}>TESTIMONIAL</p>
 
-          <h2>Hear from Our Clients</h2>
+            <h2>Hear from Our Clients</h2>
 
-          <div className={styles.stars}>★★★★★</div>
+            <div className={styles.stars}>★★★★★</div>
 
-          <p className={styles.text}>
-            "{data[index].text}"
-          </p>
+            <p className={styles.text}>
+              "{data[index].text}"
+            </p>
 
-          <h4>{data[index].name}</h4>
-          <span>{data[index].role}</span>
-        </div>
+            <h4>{data[index].name}</h4>
+            <span>{data[index].role}</span>
+          </motion.div>
+        </AnimatePresence>
 
-        {/* 🔥 ARROWS */}
         <div className={styles.controls}>
-  <button onClick={prev}>←</button>
-  <button onClick={next}>→</button>
-</div>
-
+          <motion.button type="button" onClick={prev} whileTap={{ scale: 0.92 }}>
+            ←
+          </motion.button>
+          <motion.button type="button" onClick={next} whileTap={{ scale: 0.92 }}>
+            →
+          </motion.button>
+        </div>
       </div>
-    </section>
+    </motion.section>
   );
 }
 

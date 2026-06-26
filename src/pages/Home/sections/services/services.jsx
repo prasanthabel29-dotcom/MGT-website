@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 import styles from "./services.module.css";
+import homeTitle from "./servicesHomeTitle.module.css";
 
 import img1 from "../../../../assets/Custom Software Development.jpg.png";
 import img2 from "../../../../assets/Mobile Application Development.jpg";
@@ -15,6 +17,8 @@ import img10 from "../../../../assets/Staff Augmentation.jpg";
 import img11 from "../../../../assets/Branding & Promotions.jpg";
 import img12 from "../../../../assets/IOT services1.jpg";
 
+const ease = [0.22, 1, 0.36, 1];
+
 function Services({ showTitle = false }) {
   const services = [
     { id: 0, title: "Custom Software Development", image: img1, desc: "We build scalable and secure custom software tailored for your business." },
@@ -26,46 +30,76 @@ function Services({ showTitle = false }) {
     { id: 6, title: "Data Migration", image: img7, desc: "Secure and seamless data migration." },
     { id: 7, title: "Cloud Consulting", image: img8, desc: "Reliable cloud solutions." },
     { id: 8, title: "IT Infrastructure", image: img9, desc: "Enterprise infrastructure solutions." },
-    { id: 9, title: "Staff Augmentation", image: img10, desc: "Scale your team easily." },
+    {
+      id: 9,
+      title: "Talent Acquisition & Staff Augmentation",
+      image: img10,
+      desc: "Talent acquisition, RPO, and staff augmentation—IT & non-IT, with fast turnaround.",
+    },
     { id: 10, title: "Branding & Promotions", image: img11, desc: "Build strong brand identity." },
-    { id: 11, title: "IoT Services", image: img12, desc: "Smart connected solutions." }
+    { id: 11, title: "IoT Services", image: img12, desc: "Smart connected solutions." },
   ];
 
   return (
     <section className={styles.services}>
       <div className={styles.container}>
-
-        {/* ✅ SHOW ONLY IN HOMEPAGE */}
         {showTitle && (
-          <div className={styles.titleWrap}>
-            <h1 className={styles.heading}>Our Services</h1>
-            <h2 className={styles.subHeading}>
+          <motion.div
+            className={`${styles.titleWrap} ${homeTitle.wrap}`}
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-40px", amount: 0.2 }}
+            transition={{ duration: 0.5, ease }}
+          >
+            <h1 className={`${styles.heading} ${homeTitle.heading}`}>Our Services</h1>
+            <h2 className={`${styles.subHeading} ${homeTitle.subHeading}`}>
               We're passionate about Technology & Innovations
             </h2>
-          </div>
+          </motion.div>
         )}
 
         <div className={styles.grid}>
-          {services.map((item) => (
+          {services.map((item, index) => (
             <Link
-              to={`/services/${item.id}`}
               key={item.id}
-              className={styles.card}
+              to={`/services/${item.id}`}
+              className={styles.cardLink}
             >
-              <img src={item.image} alt={item.title} />
+              <motion.div
+                className={styles.card}
+                initial={{ opacity: 0, y: 48, scale: 0.92 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                viewport={{ once: true, amount: 0.25, margin: "0px 0px -60px 0px" }}
+                transition={{
+                  delay: index * 0.07,
+                  type: "spring",
+                  stiffness: 260,
+                  damping: 22,
+                  mass: 0.9,
+                }}
+                whileHover={{
+                  y: -14,
+                  scale: 1.04,
+                  boxShadow:
+                    "0 32px 64px -12px rgba(15, 23, 42, 0.28), 0 0 0 1px rgba(56, 189, 248, 0.2)",
+                  transition: { type: "spring", stiffness: 400, damping: 20 },
+                }}
+                whileTap={{ scale: 0.97, y: -6 }}
+              >
+                <img src={item.image} alt={item.title} />
 
-              <h3>{item.title}</h3>
+                <h3>{item.title}</h3>
 
-              <div className={styles.overlay}>
-                <h2>{item.title}</h2>
-                <span className={styles.line}></span>
-                <p>{item.desc}</p>
-                <div className={styles.readMore}>Read More</div>
-              </div>
+                <div className={styles.overlay}>
+                  <h2>{item.title}</h2>
+                  <span className={styles.line} />
+                  <p>{item.desc}</p>
+                  <div className={styles.readMore}>Read More →</div>
+                </div>
+              </motion.div>
             </Link>
           ))}
         </div>
-
       </div>
     </section>
   );

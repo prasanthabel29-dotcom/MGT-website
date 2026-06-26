@@ -1,0 +1,6 @@
+/* About hero logo: stacks on services .heroImage — do not edit services.module.css */
+.aboutHeroLogo {
+  object-fit: contain;
+  height: auto;
+  max-height: min(280px, 42vw);
+}

@@ -2,50 +2,6 @@
   font-family: Arial, sans-serif;
 }
 
-/* ===== BANNER ===== */
-.banner {
-  height: clamp(200px, 30vw, 320px);
-  margin: 20px;
-  border-radius: 20px;
-  overflow: hidden;
-  background-size: cover;
-  background-position: center;
-  display: flex;
-}
-
-.overlay {
-  width: 100%;
-  height: 100%;
-  border-radius: 20px;
-  background: linear-gradient(to right, rgba(0,0,0,0.7), rgba(0,0,0,0.3));
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  color: white;
-  text-align: center;
-  padding: 20px;
-}
-
-.overlay h1 {
-  font-size: clamp(28px, 5vw, 48px);
-  margin-bottom: 10px;
-}
-
-/* breadcrumb */
-.homeLink {
-  color: #fff;
-  text-decoration: none;
-}
-
-.homeLink:hover {
-  color: #ef4444;
-}
-
-.arrow {
-  color: #ef4444;
-}
-
 /* ===== OPEN POSITIONS ===== */
 .section {
   text-align: center;
@@ -197,11 +153,6 @@
 
 /* ===== MOBILE ===== */
 @media (max-width: 600px) {
-  .banner {
-    margin: 10px;
-    border-radius: 15px;
-  }
-
   .faq {
     padding: 25px;
     border-radius: 20px;

@@ -38,7 +38,7 @@
 
 /* HEADING */
 .right h2 {
-  font-size: 50px;
+  font-size: clamp(1.65rem, 4vw + 0.75rem, 3.125rem);
   line-height: 1.2;
   font-weight: 700;
   color: #0b1325;
@@ -84,7 +84,7 @@
 /* NAME */
 .right h4 {
   margin: 0;
-  font-size: 24px;
+  font-size: clamp(1.05rem, 2.5vw, 1.5rem);
   font-weight: 700;
   color: #111;
   position: relative;
@@ -148,10 +148,6 @@
 
 /* RESPONSIVE */
 @media (max-width: 1200px) {
-  .right h2 {
-    font-size: 42px;
-  }
-
   .text {
     font-size: 15px;
   }
@@ -174,10 +170,6 @@
     margin-left: 0;
   }
 
-  .right h2 {
-    font-size: 36px;
-  }
-
   .controls {
     position: static;
     margin-top: 25px;
@@ -187,10 +179,6 @@
 @media (max-width: 768px) {
   .left {
     min-height: 250px;
-  }
-
-  .right h2 {
-    font-size: 30px;
   }
 
   .text {

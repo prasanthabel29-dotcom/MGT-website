@@ -98,6 +98,11 @@
   cursor: pointer;
 }
 
+/* Hamburger: only when desktop nav is hidden (see mobile breakpoint) */
+.menuToggle {
+  display: none;
+}
+
 /* BUTTON */
 .button {
   padding: 10px 20px;
@@ -152,10 +157,16 @@
   color: white;
 }
 
-/* MOBILE */
+/* MOBILE — hide inline nav; show drawer trigger only here */
 @media (max-width: 768px) {
   .nav,
   .button {
     display: none;
+  }
+
+  .menuToggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
   }
 }

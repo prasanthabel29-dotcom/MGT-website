@@ -161,6 +161,10 @@
   background: var(--card-hover);
 }
 
+.card.active {
+  box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.35);
+}
+
 /* QUESTION */
 .question {
   display: flex;
@@ -173,6 +177,18 @@
   gap: 20px;
 
   color: var(--text-main);
+
+  width: 100%;
+  background: none;
+  border: none;
+  font: inherit;
+  text-align: left;
+  padding: 0;
+}
+
+.question:focus-visible {
+  outline: 2px solid #ef4444;
+  outline-offset: 2px;
 }
 
 /* ICON */
@@ -183,7 +199,7 @@
   text-align: center;
 }
 
-/* ANSWER */
+/* ANSWER (legacy class — accordion uses .answerMotion + Framer) */
 .answerWrapper {
   max-height: 0;
   overflow: hidden;
@@ -194,6 +210,10 @@
 .show {
   max-height: 200px;
   opacity: 1;
+}
+
+.answerMotion {
+  overflow: hidden;
 }
 
 .answer {

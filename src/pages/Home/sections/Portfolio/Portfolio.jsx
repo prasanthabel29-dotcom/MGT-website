@@ -1,6 +1,23 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 import styles from "./Portfolio.module.css";
+
+const grid = {
+  hidden: {},
+  show: {
+    transition: { staggerChildren: 0.08 },
+  },
+};
+
+const cardMotion = {
+  hidden: { opacity: 0, y: 20 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] },
+  },
+};
 
 // 🔥 renamed safe images
 import img1 from "../../../../assets/User-Centered Design.jpg";
@@ -22,23 +39,37 @@ function Portfolio() {
 
   return (
     <div className={styles.portfolio}>
-      <h1 style={{ textAlign: "center", marginBottom: "30px" }}>
+      <motion.h1
+        style={{ textAlign: "center", marginBottom: "30px" }}
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4 }}
+      >
         Our Portfolio
-      </h1>
+      </motion.h1>
 
-      <div className={styles.grid}>
+      <motion.div
+        className={styles.grid}
+        variants={grid}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, margin: "-40px" }}
+      >
         {portfolioData.map((item) => (
-          <div
+          <motion.div
             key={item.id}
             className={styles.card}
+            variants={cardMotion}
             onClick={() => navigate(`/portfolio/${item.id}`)}
             style={{ cursor: "pointer" }}
+            whileHover={{ y: -6 }}
+            transition={{ type: "spring", stiffness: 380, damping: 28 }}
           >
             <img src={item.image} alt={item.title} />
             <h2>{item.title}</h2>
-          </div>
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
     </div>
   );
 }

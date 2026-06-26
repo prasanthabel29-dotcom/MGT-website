@@ -1,6 +1,6 @@
 /* ================== SERVICES SECTION ================== */
 .services {
-  padding: 120px 20px;
+  padding: clamp(48px, 8vw, 120px) clamp(12px, 3vw, 20px);
   background: #f5f5f5;
   position: relative;
   z-index: 1;
@@ -9,7 +9,7 @@
 .container {
   max-width: 1750px;
   margin: 0 auto;
-  padding: 0 40px;
+  padding: 0 clamp(12px, 4vw, 40px);
 }
 
 /* ================== HERO ================== */
@@ -29,7 +29,7 @@
   /* 🔥 perfect light grey (visible but soft) */
   color: rgba(0, 0, 0, 0.12);
 
-  letter-spacing: 2px;   /* 🔥 spacing for premium look */
+  letter-spacing: 2px; /* 🔥 spacing for premium look */
 }
 
 /* IMAGE (above text) */
@@ -72,6 +72,7 @@
   font-weight: 700;
   color: rgba(0, 0, 0, 0.08);
   margin-top: -60px;
+  line-height: 1;
 }
 
 .subHeading {
@@ -79,46 +80,85 @@
   font-weight: 700;
   color: #111827;
   margin-top: -30px;
+  line-height: 1.2;
 }
 
-/* ================== GRID ================== */
+/* ================== GRID (mobile-first — avoids wrong column count on small screens) ================== */
 .grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 35px;
-  margin-top: -60px;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  margin-top: -32px;
   position: relative;
   z-index: 2;
+}
+
+@media (min-width: 576px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px;
+    margin-top: -40px;
+  }
+}
+
+@media (min-width: 992px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    margin-top: -48px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 35px;
+    margin-top: -60px;
+  }
+}
+
+/* Link wrapper — no transform (Framer animates inner .card) */
+.cardLink {
+  display: block;
+  text-decoration: none;
+  color: inherit;
 }
 
 /* ================== CARD ================== */
 .card {
   position: relative;
   background: #f7f7f7;
-  border-radius: 30px;
-  padding: 35px 25px;
-  min-height: 430px;
+  border-radius: clamp(18px, 4vw, 30px);
+  padding: clamp(20px, 4vw, 35px) clamp(14px, 3vw, 25px);
+  min-height: 0;
   text-align: center;
-  text-decoration: none;
   overflow: hidden;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-  transition: transform 0.35s ease;
+  height: 100%;
+}
+
+@media (min-width: 1200px) {
+  .card {
+    min-height: 430px;
+  }
 }
 
 /* IMAGE */
 .card img {
   width: 100%;
-  height: 240px;
+  height: clamp(160px, 38vw, 240px);
   object-fit: contain;
-  margin-bottom: 25px;
-  transition: all 0.5s ease;
+  margin-bottom: clamp(14px, 3vw, 25px);
+  transition: transform 0.45s ease, opacity 0.45s ease;
 }
 
 /* TITLE */
 .card h3 {
-  font-size: 24px;
+  font-size: clamp(1rem, 3.5vw, 1.5rem);
   font-weight: 400;
   color: #111827;
+  line-height: 1.3;
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 /* ================== OVERLAY ================== */
@@ -134,22 +174,23 @@
   align-items: center;
 
   text-align: center;
-  padding: 50px 35px;
+  padding: clamp(20px, 5vw, 50px) clamp(14px, 4vw, 35px);
 
-  border-radius: 30px;
+  border-radius: clamp(18px, 4vw, 30px);
 
   opacity: 0;
   transform: scale(0.88);
 
-  backdrop-filter: blur(2px);
-  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
 
-  transition: all 0.45s ease;
+  transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
 .overlay h2 {
-  font-size: 28px;
+  font-size: clamp(1.1rem, 3.5vw, 1.75rem);
   margin-bottom: 12px;
+  line-height: 1.25;
 }
 
 .line {
@@ -160,8 +201,8 @@
 }
 
 .overlay p {
-  font-size: 16px;
-  line-height: 1.8;
+  font-size: clamp(13px, 2.8vw, 16px);
+  line-height: 1.7;
   max-width: 320px;
   margin-bottom: 20px;
 }
@@ -171,11 +212,7 @@
   font-weight: 600;
 }
 
-/* HOVER */
-.card:hover {
-  transform: translateY(-8px);
-}
-
+/* Overlay + image: CSS pairs with Framer lift on .card (same hover target) */
 .card:hover .overlay {
   opacity: 1;
   transform: scale(1);
@@ -186,21 +223,18 @@
   opacity: 0.25;
 }
 
+.card:hover h3 {
+  opacity: 0.15;
+}
+
 /* ================== RESPONSIVE ================== */
-@media (max-width: 575px) {
-  .grid {
-    grid-template-columns: 1fr;
+@media (max-width: 768px) {
+  .heroImage {
+    margin-top: -40px;
   }
-}
 
-@media (max-width: 991px) {
-  .grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 1199px) {
-  .grid {
-    grid-template-columns: repeat(3, 1fr);
+  .heroDesc {
+    font-size: 15px;
+    padding: 0 8px;
   }
 }

@@ -1,10 +1,27 @@
 import React from "react";
+import { motion } from "framer-motion";
+import heroimg from "../../assets/Services1.png";
+import PageHero from "../../components/PageHero/PageHero";
 import styles from "./BlogsPage.module.css";
 import { useNavigate } from "react-router-dom";
-
-import bannerImg from "../../assets/blogbanner.jpg";
 import blog1 from "../../assets/AI.jpg";
 import blog2 from "../../assets/Startup.jpg";
+
+const gridParent = {
+  hidden: {},
+  show: {
+    transition: { staggerChildren: 0.1 },
+  },
+};
+
+const cardVariant = {
+  hidden: { opacity: 0, y: 22 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] },
+  },
+};
 
 function BlogsPage() {
   const navigate = useNavigate();
@@ -40,55 +57,57 @@ function BlogsPage() {
 
   return (
     <div>
+      <PageHero
+        title="Blogs"
+        image={heroimg}
+        imageAlt="Majesty Global Blogs"
+        description="Stay updated with insights on technology, innovation, and industry trends from our team."
+      />
 
-      {/* 🔥 BANNER */}
-      <div className={styles.banner}>
-        <img src={bannerImg} alt="banner" />
-
-        <div className={styles.overlay}>
-          <h1>Blogs</h1>
-        </div>
-      </div>
-
-      {/* 🔥 SUB HEADING */}
-      <div className={styles.subHeading}>
+      <motion.div
+        className={styles.subHeading}
+        initial={{ opacity: 0, y: 14 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.4 }}
+      >
         <h2>
           Interesting articles <span>updated daily</span>
         </h2>
-      </div>
+      </motion.div>
 
-      {/* 🔥 BLOG GRID */}
       <div className={styles.container}>
-        <div className={styles.grid}>
-          {blogs.map((blog) => (
-            <div
-              key={blog.id}
+        <motion.div
+          className={styles.grid}
+          variants={gridParent}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-50px" }}
+        >
+          {blogs.map((blog, i) => (
+            <motion.div
+              key={`${blog.id}-${i}`}
               className={styles.card}
+              variants={cardVariant}
               onClick={() => navigate(`/blogs/${blog.id}`)}
+              whileHover={{ y: -5 }}
+              transition={{ type: "spring", stiffness: 360, damping: 26 }}
             >
-              {/* IMAGE */}
               <div className={styles.imageBox}>
                 <img src={blog.image} alt="" />
                 <span className={styles.author}>{blog.author}</span>
               </div>
 
-              {/* CONTENT */}
               <div className={styles.content}>
                 <p className={styles.date}>📅 {blog.date}</p>
-
                 <h3>{blog.title}</h3>
-
                 <p className={styles.desc}>{blog.desc}</p>
-
-                <span className={styles.readMore}>
-                  Read more →
-                </span>
+                <span className={styles.readMore}>Read more →</span>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
-
     </div>
   );
 }

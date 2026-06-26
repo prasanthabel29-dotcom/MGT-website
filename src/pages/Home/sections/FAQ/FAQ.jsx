@@ -1,7 +1,9 @@
 import React, { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import styles from "./FAQ.module.css";
+
+const ease = [0.22, 1, 0.36, 1];
 
 const faqs = [
   {
@@ -34,48 +36,82 @@ function FAQ() {
     hidden: {},
     show: {
       transition: {
-        staggerChildren: 0.15,
+        staggerChildren: 0.12,
       },
     },
   };
 
-  const item = {
-    hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0 },
+  const faqCard = {
+    hidden: { opacity: 0, y: 22 },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.4, ease },
+    },
   };
 
   return (
     <section className={styles.faq}>
-      {/* LEFT */}
       <motion.div
         className={styles.left}
-        initial={{ opacity: 0, x: -30 }}
+        initial={{ opacity: 0, x: -32 }}
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true }}
+        transition={{ duration: 0.5, ease }}
       >
-        <p className={styles.faqLabel}>FAQ</p>
+        <motion.p
+          className={styles.faqLabel}
+          initial={{ opacity: 0, y: 8 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.35, ease }}
+        >
+          FAQ
+        </motion.p>
 
-        <h2>Frequently Asked Questions</h2>
+        <motion.h2
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.45, delay: 0.05, ease }}
+        >
+          Frequently Asked Questions
+        </motion.h2>
 
-      <p className={styles.descText}>
-  We’re always on the lookout for passionate problem-
-  solvers. Drop us a line — we’d love to connect.
-</p>
-    <button className={styles.contactBtn}>
-  <span className={styles.text}>
-    Contact us <span className={styles.arrowStatic}>↗</span>
-  </span>
-  <span className={styles.arrowHover}>→</span>
-</button>
+        <motion.p
+          className={styles.descText}
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.45, delay: 0.1, ease }}
+        >
+          We’re always on the lookout for passionate problem-
+          solvers. Drop us a line — we’d love to connect.
+        </motion.p>
+        <motion.button
+          type="button"
+          className={styles.contactBtn}
+          onClick={() => navigate("/contact")}
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.4, delay: 0.15, ease }}
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
+        >
+          <span className={styles.text}>
+            Contact us <span className={styles.arrowStatic}>↗</span>
+          </span>
+          <span className={styles.arrowHover}>→</span>
+        </motion.button>
       </motion.div>
 
-      {/* RIGHT */}
       <motion.div
         className={styles.right}
         variants={container}
         initial="hidden"
         whileInView="show"
-        viewport={{ once: true }}
+        viewport={{ once: true, margin: "-40px" }}
       >
         {faqs.map((itemData, i) => (
           <motion.div
@@ -83,25 +119,42 @@ function FAQ() {
             className={`${styles.card} ${
               active === i ? styles.active : ""
             }`}
-            variants={item}
+            variants={faqCard}
+            whileHover={{ scale: 1.01 }}
+            transition={{ duration: 0.2 }}
           >
-            <div
+            <motion.button
+              type="button"
               className={styles.question}
               onClick={() => toggleFAQ(i)}
+              initial={false}
+              animate={{ opacity: 1 }}
+              whileTap={{ scale: 0.995 }}
             >
               {itemData.q}
-              <span className={styles.icon}>
+              <motion.span
+                className={styles.icon}
+                animate={{ rotate: active === i ? 180 : 0 }}
+                transition={{ duration: 0.28, ease }}
+              >
                 {active === i ? "−" : "+"}
-              </span>
-            </div>
+              </motion.span>
+            </motion.button>
 
-            <div
-              className={`${styles.answerWrapper} ${
-                active === i ? styles.show : ""
-              }`}
-            >
-              <p className={styles.answer}>{itemData.a}</p>
-            </div>
+            <AnimatePresence initial={false}>
+              {active === i && (
+                <motion.div
+                  key="answer"
+                  className={styles.answerMotion}
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ height: "auto", opacity: 1 }}
+                  exit={{ height: 0, opacity: 0 }}
+                  transition={{ duration: 0.32, ease }}
+                >
+                  <p className={styles.answer}>{itemData.a}</p>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </motion.div>
         ))}
       </motion.div>

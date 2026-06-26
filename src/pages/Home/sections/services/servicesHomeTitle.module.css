@@ -1,0 +1,18 @@
+/* Home-only: “Our Services” title stack (Services.jsx showTitle). Does not affect Services/About/Contact heroSection. */
+
+@media (max-width: 768px) {
+  .wrap .heading {
+    font-size: clamp(48px, 14vw, 72px);
+    margin-top: -40px;
+  }
+
+  .wrap .subHeading {
+    font-size: clamp(22px, 5.5vw, 34px);
+    margin-top: -18px;
+  }
+
+  .wrap {
+    margin-top: -40px;
+    padding: 48px 20px 56px;
+  }
+}

@@ -1,99 +1,59 @@
-import React, { useState } from "react";
+import React from "react";
 import { motion } from "framer-motion";
-import { useNavigate, Link } from "react-router-dom";
+import heroimg from "../../../../assets/Services1.png";
+import PageHero from "../../../../components/PageHero/PageHero";
 import styles from "./Careerspages.module.css";
-import bannerImg from "../../../../assets/careers.jpg";
+
+const ease = [0.22, 1, 0.36, 1];
+
+const sectionStagger = {
+  hidden: {},
+  show: {
+    transition: { staggerChildren: 0.11, delayChildren: 0.06 },
+  },
+};
+
+const sectionItem = {
+  hidden: { opacity: 0, y: 22 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.42, ease },
+  },
+};
 
 function CareersPage() {
-  const [active, setActive] = useState(null);
-  const navigate = useNavigate();
-
-  const toggleFAQ = (i) => {
-    setActive(active === i ? null : i);
-  };
-
-  const container = {
-    hidden: {},
-    show: {
-      transition: {
-        staggerChildren: 0.15,
-      },
-    },
-  };
-
-  const item = {
-    hidden: { opacity: 0, y: 30 },
-    show: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.4 },
-    },
-  };
-
-  const faqs = [
-    {
-      q: "Is remote or hybrid work available?",
-      a: "Yes, we offer flexible work models including remote, hybrid, and on-site options.",
-    },
-    {
-      q: "Do you offer internship opportunities?",
-      a: "Yes, internships are available for students and freshers.",
-    },
-    {
-      q: "What services does GJ Global provide?",
-      a: "We provide IT services, software solutions, and digital transformation.",
-    },
-    {
-      q: "Can freshers apply for open positions?",
-      a: "Yes, freshers can apply based on available roles.",
-    },
-  ];
-
   return (
     <div className={styles.page}>
-      
-      {/* ===== BANNER ===== */}
-      <motion.div
-        className={styles.banner}
-        style={{ backgroundImage: `url(${bannerImg})` }}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.8 }}
-      >
-        <div className={styles.overlay}>
-          <h1>Careers</h1>
+      <PageHero
+        title="Careers"
+        image={heroimg}
+        imageAlt="Careers at Majesty Global"
+        description="We're always looking for passionate people to join our team. Explore open positions and grow your career with us."
+      />
 
-          {/* ✅ BREADCRUMB FIX */}
-          <p>
-            <Link to="/" className={styles.homeLink}>
-              Home
-            </Link>
-            <span> » </span>
-            Careers
-          </p>
-        </div>
-      </motion.div>
-
-      {/* ===== OPEN POSITIONS ===== */}
       <motion.section
         className={styles.section}
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
+        variants={sectionStagger}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, margin: "-80px" }}
       >
-        <p className={styles.red}>Open Positions</p>
-        <h2>Join a Team Where Innovation Meets Impact</h2>
+        <motion.p className={styles.red} variants={sectionItem}>
+          Open Positions
+        </motion.p>
+        <motion.h2 variants={sectionItem}>
+          Join a Team Where Innovation Meets Impact
+        </motion.h2>
 
-        <p className={styles.desc}>
-          We’re always looking for passionate people to join our team.
-        </p>
+        <motion.p className={styles.desc} variants={sectionItem}>
+          We&apos;re always looking for passionate people to join our team.
+        </motion.p>
 
-        <p className={styles.noJobs}>
+        <motion.p className={styles.noJobs} variants={sectionItem}>
           No open positions right now — check back soon!
-        </p>
+        </motion.p>
       </motion.section>
-
-    
     </div>
   );
 }

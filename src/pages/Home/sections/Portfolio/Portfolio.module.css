@@ -11,15 +11,17 @@
 }
 
 .hero h1 {
-  font-size: 48px;
+  font-size: clamp(1.65rem, 4vw + 0.75rem, 3rem);
+  line-height: 1.15;
   margin-bottom: 15px;
 }
 
 .hero p {
-  font-size: 18px;
+  font-size: clamp(0.95rem, 2vw, 1.125rem);
   max-width: 700px;
   margin: 0 auto;
   line-height: 1.7;
+  padding: 0 8px;
 }
 
 /* BUTTON */
@@ -83,7 +85,8 @@
 }
 
 .content h2 {
-  font-size: 20px;
+  font-size: clamp(1.05rem, 2.2vw, 1.25rem);
+  line-height: 1.25;
   margin-bottom: 10px;
 }
 
@@ -105,11 +108,7 @@
     grid-template-columns: 1fr;
   }
 
-  .hero h1 {
-    font-size: 32px;
-  }
-
-  .hero p {
-    font-size: 15px;
+  .hero {
+    padding: 56px 16px;
   }
 }

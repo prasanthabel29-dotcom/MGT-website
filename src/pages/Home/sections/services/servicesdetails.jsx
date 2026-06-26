@@ -1,4 +1,5 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
+import { motion } from "framer-motion";
 import { useParams, useNavigate } from "react-router-dom";
 import styles from "./servicesdetails.module.css";
 
@@ -17,32 +18,27 @@ import img10 from "../../../../assets/Staff Augmentation.jpg";
 import img11 from "../../../../assets/Branding & Promotions.jpg";
 import img12 from "../../../../assets/IOT services1.jpg";
 
+const ease = [0.22, 1, 0.36, 1];
+
+const listParent = {
+  hidden: {},
+  show: {
+    transition: { staggerChildren: 0.08, delayChildren: 0.12 },
+  },
+};
+
+const listItem = {
+  hidden: { opacity: 0, x: -14 },
+  show: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.35, ease },
+  },
+};
+
 function ServiceDetails() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const cardRef = useRef(null);
-
-  // 🔥 scroll reveal
-  useEffect(() => {
-    const el = cardRef.current;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          el.classList.add(styles.show);
-        }
-      },
-      { threshold: 0.2 }
-    );
-
-    if (el) observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
-
-  // 🔥 scroll to top on change
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }, [id]);
 
   const services = [
     { id: 0, title: "Custom Software Development", image: img1, desc: "We develop scalable, secure and high-performance custom software.", points: ["Enterprise Solutions", "API Integration", "Cloud Apps", "Secure Design"] },
@@ -54,7 +50,23 @@ function ServiceDetails() {
     { id: 6, title: "Data Migration", image: img7, desc: "Safe data transfer across systems.", points: ["DB Migration", "Cloud", "Security", "No Downtime"] },
     { id: 7, title: "Cloud Consulting", image: img8, desc: "Scalable cloud infrastructure.", points: ["AWS/Azure", "Architecture", "Cost", "Deploy"] },
     { id: 8, title: "IT Infrastructure", image: img9, desc: "Strong business IT systems.", points: ["Network", "Servers", "Security", "Monitoring"] },
-    { id: 9, title: "Staff Augmentation", image: img10, desc: "Hire skilled developers fast.", points: ["Dedicated Devs", "Flexible", "Remote", "Projects"] },
+    {
+      id: 9,
+      title: "Talent Acquisition & Staff Augmentation",
+      image: img10,
+      desc: "",
+      paragraphs: [
+        "Talent Acquisition is our strong portfolio and we specialise in sourcing the best quality profiles with quick turnaround time for our esteemed partners for their IT and Non-IT requirements, with all modes of hiring viz., Full Time, Contract to Hire, Contract and Freelance.",
+        "We also work on RPO model (Recruitment Process Outsourcing) based on partners' requirements.",
+        "Staff augmentation builds on this foundation: we place skilled professionals alongside your teams so you can scale delivery quickly—with dedicated capacity, flexible engagement, and remote or on-site support aligned to your projects.",
+      ],
+      points: [
+        "Dedicated developers and specialists embedded with your teams",
+        "Flexible engagement: full-time, contract-to-hire, contract, and freelance",
+        "Fast turnaround on quality profiles across IT and non-IT roles",
+        "RPO programs tailored to your hiring volume and process",
+      ],
+    },
     { id: 10, title: "Branding & Promotions", image: img11, desc: "Build brand identity.", points: ["Logo", "Campaigns", "Social", "Content"] },
     { id: 11, title: "IoT Services", image: img12, desc: "Smart automation solutions.", points: ["Devices", "Automation", "Monitoring", "Analytics"] }
   ];
@@ -64,40 +76,85 @@ function ServiceDetails() {
   if (!service) return <h2>Service Not Found</h2>;
 
   return (
-    <div className={styles.container}>
-
-      {/* 🔥 SMALL BANNER */}
-      <div className={styles.banner}>
+    <motion.div
+      className={styles.container}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.35 }}
+    >
+      <motion.div
+        className={styles.banner}
+        initial={{ opacity: 0, y: -12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4, ease }}
+      >
         <img src={heroimg} alt="banner" />
-      </div>
+      </motion.div>
 
-      {/* 🔥 BACK */}
       <div className={styles.topBar}>
-        <button onClick={() => navigate(-1)} className={styles.back}>
+        <motion.button
+          type="button"
+          onClick={() => navigate(-1)}
+          className={styles.back}
+          whileHover={{ x: -3 }}
+          transition={{ type: "spring", stiffness: 400, damping: 25 }}
+        >
           ← Back
-        </button>
+        </motion.button>
       </div>
 
-      {/* 🔥 CARD */}
-      <div ref={cardRef} className={styles.card}>
-        
-        <div className={styles.imageWrap}>
+      <motion.div
+        className={styles.card}
+        initial={{ opacity: 0, y: 24 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.45, delay: 0.06, ease }}
+      >
+        <motion.div
+          className={styles.imageWrap}
+          initial={{ opacity: 0, scale: 0.96 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5, delay: 0.1, ease }}
+          whileHover={{ scale: 1.01 }}
+        >
           <img src={service.image} alt={service.title} />
-        </div>
+        </motion.div>
 
         <div className={styles.content}>
-          <h1>{service.title}</h1>
-          <p>{service.desc}</p>
+          <motion.h1
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.14, ease }}
+          >
+            {service.title}
+          </motion.h1>
+          {(service.paragraphs?.length
+            ? service.paragraphs
+            : [service.desc].filter(Boolean)
+          ).map((text, i) => (
+            <motion.p
+              key={i}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: 0.18 + i * 0.06, ease }}
+            >
+              {text}
+            </motion.p>
+          ))}
 
-          <ul>
+          <motion.ul
+            variants={listParent}
+            initial="hidden"
+            animate="show"
+          >
             {service.points.map((p, i) => (
-              <li key={i}>✓ {p}</li>
+              <motion.li key={i} variants={listItem}>
+                ✓ {p}
+              </motion.li>
             ))}
-          </ul>
+          </motion.ul>
         </div>
-
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 }
 

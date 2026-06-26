@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 
 import ErrorBoundary from "./components/ErrorBoundary/ErrorBoundary";
 import PageLoader from "./components/Loaders/PageLoader";
+import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
 import WebsiteLayout from "./layouts/WebsiteLayout/WebsiteLayout";
 
 // LAZY PAGES
@@ -45,6 +46,7 @@ const NotFoundPage = React.lazy(() =>
 function App() {
   return (
     <ErrorBoundary>
+      <ScrollToTop />
       <Suspense fallback={<PageLoader />}>
         <Routes>
           <Route path="/" element={<WebsiteLayout />}>

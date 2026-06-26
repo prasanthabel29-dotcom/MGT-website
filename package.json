@@ -17,6 +17,7 @@
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.3",
     "axios": "^1.6.8",
+    "enterprise-react-app": "file:",
     "framer-motion": "^12.38.0",
     "react": "^18.3.1",
     "react-countup": "^6.5.3",
@@ -26,6 +27,7 @@
     "react-intersection-observer": "^10.0.3",
     "react-redux": "^9.1.0",
     "react-router-dom": "^6.23.0",
+    "three": "^0.185.0",
     "yup": "^1.4.0"
   },
   "devDependencies": {

@@ -1,5 +1,6 @@
 import React from "react";
 import { useParams } from "react-router-dom";
+import { motion } from "framer-motion";
 import styles from "./BlogDetails.module.css";
 
 import aiImg from "../../assets/AI.jpg";
@@ -51,20 +52,81 @@ In conclusion, working in a startup is risky but highly rewarding.`,
 
   if (!blog) return <h2 style={{ textAlign: "center" }}>Blog not found</h2>;
 
+  const paragraphs = blog.content
+    .split(/\n\n+/)
+    .map((p) => p.trim())
+    .filter(Boolean);
+
+  const textParent = {
+    hidden: {},
+    show: {
+      transition: { staggerChildren: 0.07, delayChildren: 0.12 },
+    },
+  };
+
+  const textBlock = {
+    hidden: { opacity: 0, y: 14 },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.38, ease: [0.22, 1, 0.36, 1] },
+    },
+  };
+
   return (
-    <div className={styles.container}>
-      <img src={blog.image} alt={blog.title} className={styles.image} />
+    <motion.div
+      className={styles.container}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.35 }}
+    >
+      <motion.img
+        src={blog.image}
+        alt={blog.title}
+        className={styles.image}
+        initial={{ opacity: 0, scale: 1.03 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+      />
 
-      <div className={styles.contentBox}>
-        <h1 className={styles.title}>{blog.title}</h1>
+      <motion.div
+        className={styles.contentBox}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.45, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+      >
+        <motion.h1
+          className={styles.title}
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, delay: 0.02, ease: [0.22, 1, 0.36, 1] }}
+        >
+          {blog.title}
+        </motion.h1>
 
-        <p className={styles.meta}>
+        <motion.p
+          className={styles.meta}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.35, delay: 0.08 }}
+        >
           📅 {blog.date} • ✍ {blog.author}
-        </p>
+        </motion.p>
 
-        <p className={styles.text}>{blog.content}</p>
-      </div>
-    </div>
+        <motion.div
+          variants={textParent}
+          initial="hidden"
+          animate="show"
+          style={{ display: "flex", flexDirection: "column", gap: "1.15rem" }}
+        >
+          {paragraphs.map((para, i) => (
+            <motion.p key={i} className={styles.text} variants={textBlock}>
+              {para}
+            </motion.p>
+          ))}
+        </motion.div>
+      </motion.div>
+    </motion.div>
   );
 }
 
