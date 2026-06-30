@@ -8,11 +8,18 @@
   align-items: center;
   justify-content: center;
 
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-
+  background: linear-gradient(135deg, #071426 0%, #0b1f3d 45%, #0a2448 100%);
   overflow: hidden;
+}
+
+/* PARTICLE CANVAS */
+.particles {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
 }
 
 /* OVERLAY */
@@ -22,24 +29,24 @@
 
   background: linear-gradient(
     to right,
-    rgba(10, 20, 50, 0.85),
-    rgba(0, 150, 255, 0.25)
+    rgba(7, 20, 38, 0.55),
+    rgba(15, 118, 178, 0.12)
   );
 
-  pointer-events: none; /* 🔥 important fix */
-  z-index: 1;
+  pointer-events: none;
+  z-index: 2;
 }
 
 /* CONTENT */
 .content {
   position: relative;
-  z-index: 2;
+  z-index: 3;
 
   max-width: 1200px;
   width: 100%;
 
   text-align: center;
-  padding: 20px;
+  padding: calc(var(--header-height, 72px) + 24px) 20px 20px;
   color: white;
 }
 
@@ -75,6 +82,9 @@
 
 /* PRIMARY */
 .primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   padding: 14px 30px;
   border-radius: 10px;
   border: none;
@@ -83,6 +93,7 @@
   color: white;
 
   font-weight: 600;
+  text-decoration: none;
   cursor: pointer;
   transition: 0.3s;
 }
@@ -93,6 +104,9 @@
 
 /* SECONDARY */
 .secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   padding: 14px 30px;
   border-radius: 10px;
 
@@ -100,6 +114,7 @@
   background: transparent;
   color: white;
 
+  text-decoration: none;
   cursor: pointer;
 }
 

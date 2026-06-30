@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Testimonials.module.css";
-import bg from "../../../../assets/testimonialh.jpg";
+import bg from "../../../../assets/testimonialh.png";
 
 const data = [
   {
@@ -54,10 +54,13 @@ function TestimonialsSection() {
     <section className={styles.wrapper}>
       
       {/* LEFT IMAGE */}
-      <div
-        className={styles.left}
-        style={{ backgroundImage: `url(${bg})` }}
-      ></div>
+      <div className={styles.left}>
+        <img
+          src={bg}
+          alt="Client testimonial"
+          className={styles.leftImage}
+        />
+      </div>
 
       {/* RIGHT CONTENT */}
       <div className={styles.right}>

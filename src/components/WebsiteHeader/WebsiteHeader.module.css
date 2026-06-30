@@ -1,161 +1,353 @@
-/* HEADER */
+/* =========================
+   THEME VARIABLES
+========================= */
+:root {
+  --faq-bg: #f3f4f6;
+  --card-bg: #e5e7eb;
+  --card-hover: #d1d5db;
+
+  --text-main: #111827;
+  --text-sub: #6b7280;
+  --text-answer: #4b5563;
+
+  --border: #d1d5db;
+  --btn-bg: #f9f9f9;
+
+  --header-bg: #ffffff;
+}
+
+/* 🌙 DARK MODE */
+[data-theme="dark"] {
+  --faq-bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+
+  --text-main: #f9fafb;
+  --text-sub: #cbd5f5;
+  --text-answer: #94a3b8;
+
+  --border: #334155;
+  --btn-bg: #1e293b;
+
+  --header-bg: #0f172a;
+}
+
+/* =========================
+   HEADER
+========================= */
 .header {
   position: fixed;
   top: 0;
   width: 100%;
+  box-sizing: border-box;
+
   padding: 15px 40px;
 
   display: flex;
   align-items: center;
   justify-content: space-between;
 
-  background: var(--bg-main);
+  background: var(--header-bg);
   color: var(--text-main);
 
   z-index: 999;
-  transition: 0.3s;
+
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
 
-/* LOGO */
-/* LOGO FIX - underline remove */
+/* SCROLL HIDE */
+.hide {
+  transform: translateY(-100%);
+}
+
+/* =========================
+   LOGO
+========================= */
 .logo {
   display: flex;
   align-items: center;
   gap: 10px;
-  text-decoration: none !important;   /* 🔥 important */
-}
-
-.logo:hover,
-.logo:focus,
-.logo:active {
-  text-decoration: none !important;   /* 🔥 ensure no underline */
-}
-
-/* extra safety */
-.logo::after {
-  display: none !important;
+  text-decoration: none;
 }
 
 .logoImg {
-  width: 40px;
+  width: 42px;
+  height: 42px;
+  object-fit: contain;
+  filter: brightness(1.2) contrast(1.08);
+  transition: filter 0.3s ease;
+}
+
+[data-theme="dark"] .logoImg {
+  filter: brightness(1.35) contrast(1.1);
 }
 
 .logoText {
-  font-size: 20px;
+  font-size: 22px;
   font-weight: 700;
   color: var(--text-main);
+  line-height: 1.2;
 }
 
-/* NAV */
+.logoTextFull {
+  display: inline;
+}
+
+.logoTextShort {
+  display: none;
+}
+
+/* =========================
+   NAVIGATION
+========================= */
 .nav {
   display: flex;
+  align-items: center;
   gap: 30px;
 }
 
-/* LINK */
-.link {
+.link,
+.active {
+  position: relative;
   text-decoration: none;
   color: var(--text-main);
-  position: relative;
+  font-weight: 500;
+  padding: 5px 0;
+  transition: color 0.3s ease;
 }
 
-/* ACTIVE */
-.active {
-  color: #3b82f6;
-}
-
-/* UNDERLINE */
-.link::after {
+/* underline animation */
+.link::after,
+.active::after {
   content: "";
   position: absolute;
-  bottom: -4px;
   left: 0;
+  bottom: -5px;
   width: 0%;
   height: 2px;
-  background: #3b82f6;
-  transition: 0.3s;
+  background: #2563eb;
+  transition: width 0.3s ease;
 }
 
 .link:hover::after {
   width: 100%;
 }
 
-/* ACTIONS */
-.actions {
-  display: flex;
-  gap: 10px;
+.active {
+  color: #2563eb;
 }
 
-/* ICON BUTTON */
+.active::after {
+  width: 100%;
+}
+
+/* =========================
+   ACTIONS
+========================= */
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+/* =========================
+   ICON BUTTON
+========================= */
 .iconBtn {
-  width: 40px;
-  height: 40px;
-  border-radius: 10px;
+  width: 42px;
+  height: 42px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 12px;
   border: none;
 
   background: var(--card-bg);
   color: var(--text-main);
+
   cursor: pointer;
+  transition: all 0.3s ease;
+
+  font-size: 18px;
 }
 
-/* BUTTON */
+.iconBtn:hover {
+  background: var(--card-hover);
+}
+
+.menuBtn {
+  display: none;
+}
+
+/* =========================
+   GET STARTED BUTTON
+========================= */
 .button {
-  padding: 10px 20px;
-  border-radius: 20px;
+  padding: 12px 22px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 30px;
   background: linear-gradient(135deg, #4f46e5, #22c55e);
   color: white;
   text-decoration: none;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: all 0.3s ease;
 }
 
-/* OVERLAY */
+.button:hover {
+  transform: translateY(-2px);
+}
+
+/* =========================
+   OVERLAY
+========================= */
 .overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.4);
+
+  background: rgba(0, 0, 0, 0.4);
+
+  z-index: 998;
 }
 
-/* MOBILE MENU */
+/* =========================
+   MOBILE MENU
+========================= */
 .mobileMenu {
   position: fixed;
   top: 0;
   right: 0;
+
   width: 75%;
+  max-width: 320px;
   height: 100vh;
 
-  background: var(--bg-main);
-  padding: 25px;
+  background: var(--header-bg);
+
+  padding: 30px 25px;
 
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 22px;
 
   transform: translateX(100%);
-  transition: 0.3s;
+  transition: transform 0.3s ease;
+
+  z-index: 999;
 }
 
 .show {
   transform: translateX(0);
 }
 
-/* MOBILE LINKS */
+/* =========================
+   MOBILE LINKS
+========================= */
 .mobileLink {
   text-decoration: none;
   color: var(--text-main);
+
+  font-size: 18px;
+  font-weight: 500;
 }
 
-/* MOBILE BUTTON */
+/* =========================
+   MOBILE BUTTON
+========================= */
 .mobileButton {
-  padding: 12px;
+  padding: 14px;
   text-align: center;
-  border-radius: 10px;
+  border-radius: 12px;
   background: linear-gradient(135deg, #4f46e5, #22c55e);
   color: white;
+  text-decoration: none;
+  font-weight: 600;
 }
 
-/* MOBILE */
-@media (max-width: 768px) {
-  .nav,
+/* =========================
+   TABLET
+========================= */
+@media (max-width: 992px) {
+  .nav {
+    gap: 18px;
+  }
+
+  .link,
+  .active {
+    font-size: 14px;
+  }
+
   .button {
     display: none;
+  }
+
+  .header {
+    padding: 14px 25px;
+  }
+
+  .logoText {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav {
+    display: none;
+  }
+
+  .menuBtn {
+    display: flex;
+  }
+
+  .header {
+    padding: 12px 18px;
+  }
+
+  .logoText {
+    font-size: 16px;
+    max-width: 200px;
+  }
+
+  .logoImg {
+    width: 36px;
+    height: 36px;
+  }
+
+  .actions {
+    gap: 10px;
+  }
+}
+
+@media (max-width: 576px) {
+  .logoTextFull {
+    display: none;
+  }
+
+  .logoTextShort {
+    display: inline;
+    font-size: 15px;
+    font-weight: 700;
+  }
+
+  .logoText {
+    max-width: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .iconBtn {
+    width: 38px;
+    height: 38px;
+  }
+
+  .mobileMenu {
+    width: 85%;
   }
 }

@@ -20,8 +20,8 @@ body {
   transition: background 0.3s ease, color 0.3s ease;
 }
 
-/* 🌞 LIGHT MODE */
 :root {
+  --header-height: 72px;
   --bg-main: #ffffff;
   --text-main: #111827;
   --text-sub: #6b7280;
@@ -32,6 +32,36 @@ body {
   --footer-bg: #ffffff;
   --footer-text: #111827;
   --footer-sub: #6b7280;
+}
+
+.page-container {
+  width: 100%;
+  max-width: 1750px;
+  margin: 0 auto;
+  padding: 0 40px;
+  box-sizing: border-box;
+}
+
+@media (max-width: 992px) {
+  .page-container {
+    padding: 0 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --header-height: 64px;
+  }
+
+  .page-container {
+    padding: 0 20px;
+  }
+}
+
+@media (max-width: 576px) {
+  .page-container {
+    padding: 0 16px;
+  }
 }
 
 /* 🌙 DARK MODE */

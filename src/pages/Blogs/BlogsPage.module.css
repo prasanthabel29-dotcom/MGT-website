@@ -14,20 +14,20 @@ body {
   width: 100%;
   height: 280px;
   overflow: hidden;
-}
-
-/* IMAGE */
-.banner img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 /* 🔥 OVERLAY CENTER */
 .overlay {
   position: absolute;
   inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.7),
+    rgba(0, 0, 0, 0.35)
+  );
 
   display: flex;
   justify-content: center;
@@ -73,25 +73,38 @@ body {
   padding: 10px 20px;
 }
 
-/* GRID DEFAULT */
+/* GRID */
 .grid {
-  display: flex;
-  flex-wrap: nowrap;
-  gap: 20px;
-  overflow-x: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 24px;
+}
+
+/* CARD */
+.card {
+  background: #fff;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.12);
 }
 
 /* IMAGE BOX */
 .imageBox {
   position: relative;
-  border-radius: 15px;
-  overflow: hidden;
-}
-
-.imageBox img {
   width: 100%;
-  height: 220px;
-  object-fit: cover;
+  height: 240px;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: #e5e7eb;
 }
 
 /* AUTHOR */
@@ -108,7 +121,7 @@ body {
 
 /* CONTENT */
 .content {
-  padding: 10px 5px;
+  padding: 16px;
 }
 
 .date {
@@ -138,8 +151,8 @@ body {
 
 /* ================= RESPONSIVE ================= */
 
-/* 📱 Mobile (0px - 575px) */
-@media (min-width: 0px) and (max-width: 575px) {
+/* 📱 Mobile */
+@media (max-width: 575px) {
   .grid {
     grid-template-columns: 1fr;
   }
@@ -151,10 +164,14 @@ body {
   .banner {
     height: 200px;
   }
+
+  .imageBox {
+    height: 200px;
+  }
 }
 
-/* 📱 Small Devices (576px - 767px) */
-@media (min-width: 576px) and (max-width: 767px) {
+/* 📱 Tablet */
+@media (min-width: 576px) and (max-width: 991px) {
   .grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -164,27 +181,9 @@ body {
   }
 }
 
-/* 📱 Tablets (768px - 991px) */
-@media (min-width: 768px) and (max-width: 991px) {
-  .grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .overlay h1 {
-    font-size: 36px;
-  }
-}
-
-/* 💻 Laptops (992px - 1199px) */
-@media (min-width: 992px) and (max-width: 1199px) {
+/* 💻 Desktop */
+@media (min-width: 992px) {
   .grid {
     grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-/* 🖥 Desktop (1200px and above) */
-@media (min-width: 1200px) {
-  .grid {
-    grid-template-columns: repeat(4, 1fr);
   }
 }

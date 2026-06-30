@@ -1,0 +1,97 @@
+.page {
+  width: 100%;
+  max-width: 650px;
+  margin: 0 auto;
+  padding: 32px 20px 60px;
+  box-sizing: border-box;
+}
+
+.card {
+  width: 100%;
+  padding: 28px 24px;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  box-sizing: border-box;
+}
+
+.title {
+  text-align: center;
+  margin: 0 0 28px;
+  color: #111827;
+  font-size: 28px;
+}
+
+.field {
+  width: 100%;
+  padding: 14px;
+  margin: 12px 0;
+  border-radius: 10px;
+  border: 1px solid #d1d5db;
+  font-size: 15px;
+  box-sizing: border-box;
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 130px;
+}
+
+.file {
+  width: 100%;
+  margin: 15px 0;
+  font-size: 15px;
+}
+
+.button {
+  width: 100%;
+  padding: 14px;
+  margin-top: 20px;
+  background: #111827;
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.button:disabled {
+  background: #6b7280;
+  cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+  .page {
+    padding: 24px 16px 48px;
+  }
+
+  .card {
+    padding: 22px 18px;
+  }
+
+  .title {
+    font-size: 24px;
+    margin-bottom: 22px;
+  }
+}
+
+@media (max-width: 576px) {
+  .page {
+    padding: 20px 14px 40px;
+  }
+
+  .card {
+    padding: 20px 16px;
+    border-radius: 14px;
+  }
+
+  .title {
+    font-size: 22px;
+  }
+
+  .field,
+  .file {
+    font-size: 14px;
+  }
+}

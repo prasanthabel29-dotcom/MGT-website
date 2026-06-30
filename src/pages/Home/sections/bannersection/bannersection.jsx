@@ -1,13 +1,13 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styles from "./bannersection.module.css";
-import bg from "../../../../assets/bgg.jpg";
+import ParticleCanvas from "../../../../components/ParticleCanvas/ParticleCanvas";
 
 function BannerSection() {
   return (
-    <section
-      className={styles.banner}
-      style={{ backgroundImage: `url(${bg})` }}
-    >
+    <section className={styles.banner}>
+      <ParticleCanvas />
+
       <div className={styles.overlay}></div>
 
       <div className={styles.content}>
@@ -22,13 +22,13 @@ function BannerSection() {
         </p>
 
         <div className={styles.buttons}>
-          <button className={styles.primary}>
+          <Link to="/contact" className={styles.primary}>
             Get Started →
-          </button>
+          </Link>
 
-          <button className={styles.secondary}>
+          <Link to="/contact" className={styles.secondary}>
             Contact Us
-          </button>
+          </Link>
         </div>
       </div>
     </section>

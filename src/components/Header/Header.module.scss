@@ -1,3 +1,7 @@
+
+/* =========================
+   THEME VARIABLES
+========================= */
 :root {
   --faq-bg: #f3f4f6;
   --card-bg: #e5e7eb;
@@ -9,6 +13,8 @@
 
   --border: #d1d5db;
   --btn-bg: #f9f9f9;
+
+  --header-bg: #ffffff;
 }
 
 /* 🌙 DARK MODE */
@@ -23,21 +29,34 @@
 
   --border: #334155;
   --btn-bg: #1e293b;
+
+  --header-bg: #0f172a;
 }
 
+/* =========================
+   HEADER
+========================= */
 .header {
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  align-items: center;
-  padding: 15px 40px;
-  background: #fff;
-
   position: sticky;
   top: 0;
   z-index: 9999;
+
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+
+  padding: 15px 40px;
+
+  background: var(--header-bg);
+  color: var(--text-main);
+
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
 }
 
-/* LOGO */
+/* =========================
+   LOGO
+========================= */
 .logoContainer {
   display: flex;
   align-items: center;
@@ -47,31 +66,35 @@
 
 .logo {
   width: 45px;
+  height: 45px;
 }
 
 .logoText {
   font-size: 20px;
   font-weight: bold;
-  color: #2563eb;
+  color: var(--text-main);
 }
 
-/* NAV */
+/* =========================
+   NAV
+========================= */
 .nav {
   display: flex;
   justify-self: center;
   gap: 25px;
+  align-items: center;
 }
 
-/* LINK */
 .link,
 .active {
   position: relative;
   text-decoration: none;
-  color: #555;
+  color: var(--text-main);
   padding: 5px 0;
+  font-weight: 500;
 }
 
-/* underline */
+/* underline animation */
 .link::after,
 .active::after {
   content: "";
@@ -84,12 +107,10 @@
   transition: width 0.3s ease;
 }
 
-/* no hover underline */
 .link:hover::after {
   width: 0%;
 }
 
-/* active underline */
 .active::after {
   width: 100%;
 }
@@ -98,26 +119,63 @@
   color: #2563eb;
 }
 
-/* BUTTON */
+/* =========================
+   BUTTON
+========================= */
 .button {
   padding: 10px 20px;
   border-radius: 25px;
+
   background: linear-gradient(to right, #3b82f6, #22c55e);
   color: white;
   text-decoration: none;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 40px;
+  white-space: nowrap;
 }
 
-/* 📱 Mobile (0px - 575px) */
+/* =========================
+   ACTIONS (optional if used)
+========================= */
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* =========================
+   ICON BUTTON (if used)
+========================= */
+.iconBtn {
+  width: 40px;
+  height: 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 10px;
+  border: none;
+
+  background: var(--card-bg);
+  color: var(--text-main);
+  cursor: pointer;
+}
+
+/* =========================
+   MOBILE MENU
+========================= */
 @media (min-width: 0px) and (max-width: 575px) {
   .header {
     grid-template-columns: auto auto;
     padding: 12px 15px;
   }
 
-  .nav {
-    display: none;
-  }
-
+  .nav,
   .button {
     display: none;
   }
@@ -131,17 +189,13 @@
   }
 }
 
-/* 📱 Small Devices (576px - 767px) */
 @media (min-width: 576px) and (max-width: 767px) {
   .header {
     grid-template-columns: auto auto;
     padding: 12px 20px;
   }
 
-  .nav {
-    display: none;
-  }
-
+  .nav,
   .button {
     display: none;
   }
@@ -151,7 +205,6 @@
   }
 }
 
-/* 📱 Tablets (768px - 991px) */
 @media (min-width: 768px) and (max-width: 991px) {
   .header {
     padding: 14px 25px;
@@ -162,14 +215,12 @@
   }
 }
 
-/* 💻 Laptops (992px - 1199px) */
 @media (min-width: 992px) and (max-width: 1199px) {
   .nav {
     gap: 22px;
   }
 }
 
-/* 🖥 Desktop (1200px and above) */
 @media (min-width: 1200px) {
   .nav {
     gap: 25px;

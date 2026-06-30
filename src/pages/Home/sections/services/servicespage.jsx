@@ -6,19 +6,27 @@ import heroimg from "../../../../assets/Services1.png";
 function ServicesPage() {
   return (
     <>
-      <section className={styles.heroSection}>
-        <h1 className={styles.heroBgText}>Our Services</h1>
+     <section className={styles.heroSection}>
 
-        <img src={heroimg} alt="Services" className={styles.heroImage} />
+  <h1 className={styles.heroBgText}>
+    Our Services
+  </h1>
 
-        <p className={styles.heroDesc}>
-          We are engaged in innovative software development, website design &
-          development, mobile app development, ERP app development and digital
-          marketing utilizing advanced technologies.
-        </p>
-      </section>
+  <img
+    src={heroimg}
+    alt="Services"
+    className={styles.heroImage}
+  />
 
-      {/* ❌ NO TITLE HERE */}
+  <p className={styles.heroDesc}>
+    We are engaged in innovative software development,
+    website design & development, mobile app development,
+    ERP app development and digital marketing utilizing
+    advanced technologies.
+  </p>
+
+</section>
+
       <Services showTitle={false} />
     </>
   );

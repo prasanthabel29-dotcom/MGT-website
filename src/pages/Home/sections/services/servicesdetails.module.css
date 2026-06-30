@@ -125,14 +125,23 @@
 
 /* MOBILE */
 @media (max-width: 768px) {
+  .container {
+    padding: 20px 16px 50px;
+  }
+
   .banner img {
-    height: 100px;
+    height: 90px;
   }
 
   .card {
     grid-template-columns: 1fr;
-    padding: 25px;
+    padding: 24px 20px;
     text-align: center;
+    gap: 24px;
+  }
+
+  .content h1 {
+    font-size: 24px;
   }
 
   .content {
@@ -147,5 +156,20 @@
   .back {
     position: static;
     margin-bottom: 10px;
+  }
+}
+
+@media (max-width: 576px) {
+  .banner img {
+    height: 70px;
+  }
+
+  .content h1 {
+    font-size: 22px;
+  }
+
+  .content p,
+  .content li {
+    font-size: 14px;
   }
 }

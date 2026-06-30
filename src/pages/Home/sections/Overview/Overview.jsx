@@ -1,23 +1,44 @@
 import React from "react";
 import styles from "./Overview.module.css";
-import CountUp from "react-countup";
 import { useInView } from "react-intersection-observer";
+import ParticleCanvas from "../../../../components/ParticleCanvas/ParticleCanvas";
+
+import hpuLogo from "../../../../assets/HPU logo.jpg";
+import toshibaLogo from "../../../../assets/tossiba logo.jpg";
+import forestreetLogo from "../../../../assets/forestreet logo.jpg";
+import optimusLogo from "../../../../assets/optimus logo.jpg";
+import predisyLogo from "../../../../assets/predisy techn logo.jpg";
+import shreeLogo from "../../../../assets/shree logo.png";
+
+const industryVerticals = [
+  "Entertainment",
+  "Healthcare",
+  "Hospitality",
+];
+
+const partners = [
+  { key: "hpu", name: "HPU", logo: hpuLogo },
+  { key: "shree", name: "Shree Ayurvedic", logo: shreeLogo },
+  { key: "toshiba", name: "Toshiba", logo: toshibaLogo },
+  { key: "forestreet", name: "Forestreet", logo: forestreetLogo },
+  { key: "optimus", name: "Optimus", logo: optimusLogo },
+  { key: "predisy", name: "Predisy Technovations", logo: predisyLogo },
+];
 
 function Overview() {
-
-  // 👇 scroll detect
   const { ref, inView } = useInView({
     triggerOnce: true,
-    threshold: 0.3,
+    threshold: 0.2,
   });
 
   return (
     <section className={styles.overview} ref={ref}>
-      
-      <div className={styles.container}>
+      <ParticleCanvas />
 
-        {/* LEFT */}
-        <div className={`${styles.left} ${inView ? styles.show : ""}`}>
+      <div className={styles.overlay} />
+
+      <div className={`${styles.container} ${inView ? styles.show : ""}`}>
+        <div className={styles.header}>
           <h2>
             Empowering Businesses to Succeed{" "}
             <span>Our Success Stories</span>
@@ -29,41 +50,35 @@ function Overview() {
           </p>
         </div>
 
-        {/* RIGHT */}
-        <div className={`${styles.right} ${inView ? styles.show : ""}`}>
+        <div className={styles.projects}>
+          <h3>Projects Implemented for various industry verticals</h3>
 
-          <div className={styles.card}>
-            <h3>
-              {inView && <CountUp end={300} duration={2} />}+
-            </h3>
-            <p>Successful Projects</p>
-          </div>
-
-          <div className={styles.card}>
-            <h3>
-              {inView && <CountUp end={250} duration={2} />}+
-            </h3>
-            <p>Satisfied Clients</p>
-          </div>
-
-          <div className={styles.card}>
-            <h3>
-              {inView && <CountUp end={8} duration={2} />}+
-            </h3>
-            <p>Industry Experience</p>
-          </div>
-
-          <div className={styles.card}>
-            <h3>
-              {inView && <CountUp end={35} duration={2} />}
-            </h3>
-            <p>Skilled Professionals</p>
-          </div>
-
+          <ul>
+            {industryVerticals.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
         </div>
 
-      </div>
+        <div className={styles.partners}>
+          <h3>Our Esteem Partners</h3>
 
+          <div className={styles.partnerLogos}>
+            {partners.map((partner) => (
+              <div key={partner.key} className={styles.partnerLogo}>
+                <div className={styles.logoFrame}>
+                  <img
+                    src={partner.logo}
+                    alt={`${partner.name} logo`}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
     </section>
   );
 }

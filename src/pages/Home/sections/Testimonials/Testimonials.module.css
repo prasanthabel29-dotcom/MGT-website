@@ -9,9 +9,19 @@
 .left {
   flex: 1;
   min-height: 100vh;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  position: relative;
+  background: #0b1325;
+  overflow: hidden;
+}
+
+.leftImage {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
 }
 
 /* RIGHT SIDE */
@@ -160,13 +170,25 @@
 @media (max-width: 992px) {
   .wrapper {
     flex-direction: column;
+    min-height: auto;
   }
 
   .left {
-    min-height: 300px;
+    min-height: 50vh;
+    width: 100%;
+  }
+
+  .leftImage {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
   }
 
   .right {
+    min-height: auto;
     padding: 40px 25px;
   }
 
@@ -186,7 +208,7 @@
 
 @media (max-width: 768px) {
   .left {
-    min-height: 250px;
+    min-height: 45vh;
   }
 
   .right h2 {

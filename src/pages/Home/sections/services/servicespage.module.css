@@ -1,0 +1,56 @@
+/* HERO SECTION */
+.heroSection {
+  background: #eeeeee;
+  text-align: center;
+  padding: 70px 20px 60px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* OUR SERVICES TITLE */
+.heroBgText {
+  font-size: clamp(58px, 8vw, 100px);
+  font-weight: 800;
+
+  color: #c7c7c7; /* 🔥 visible gray */
+
+  letter-spacing: 3px;
+  text-transform: uppercase;
+
+  margin-bottom: 25px;
+
+  position: relative;
+  z-index: 10;
+
+  line-height: 1.1;
+
+  /* 🔥 premium effect */
+  text-shadow:
+    2px 2px 0 rgba(255,255,255,0.7),
+    -2px -2px 0 rgba(0,0,0,0.03);
+}
+
+/* IMAGE */
+.heroImage {
+  width: 650px;
+  max-width: 100%;
+
+  display: block;
+  margin: 0 auto 30px;
+
+  position: relative;
+  z-index: 2;
+}
+
+/* DESCRIPTION */
+.heroDesc {
+  max-width: 1000px;
+  margin: 0 auto;
+
+  font-size: 17px;
+  line-height: 1.9;
+  color: #6b7280;
+
+  position: relative;
+  z-index: 2;
+}

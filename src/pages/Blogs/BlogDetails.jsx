@@ -4,6 +4,7 @@ import styles from "./BlogDetails.module.css";
 
 import aiImg from "../../assets/AI.jpg";
 import startupImg from "../../assets/Startup.jpg";
+import cloudImg from "../../assets/consulting.jpg";
 
 function BlogDetails() {
   const { id } = useParams();
@@ -45,6 +46,22 @@ In conclusion, working in a startup is risky but highly rewarding.`,
       author: "Hafsa",
       image: startupImg,
     },
+    {
+      id: "3",
+      title: "Why Cloud Consulting Matters for Modern Businesses",
+      content: `Cloud computing has become the backbone of modern business operations. Companies that adopt a clear cloud strategy gain flexibility, better security, and the ability to scale without heavy upfront investment.
+
+Cloud consulting helps organizations choose the right platforms — whether AWS, Azure, or Google Cloud — and migrate existing systems with minimal downtime. A structured approach reduces risk and ensures teams get the most value from their investment.
+
+Beyond migration, cloud consulting covers architecture design, cost optimization, and ongoing monitoring. Businesses can automate backups, improve disaster recovery, and enable remote teams to work securely from anywhere.
+
+For growing companies in India and abroad, cloud adoption is a competitive advantage. Partnering with experienced consultants like Majesty Global ensures a smooth transition tailored to your industry and goals.
+
+In summary, cloud consulting is not just about moving data — it is about building a foundation for long-term digital growth.`,
+      date: "18/03/2025",
+      author: "Prasanth",
+      image: cloudImg,
+    },
   ];
 
   const blog = blogs.find((b) => b.id === id);
@@ -53,7 +70,12 @@ In conclusion, working in a startup is risky but highly rewarding.`,
 
   return (
     <div className={styles.container}>
-      <img src={blog.image} alt={blog.title} className={styles.image} />
+      <div
+        className={styles.image}
+        style={{ backgroundImage: `url(${blog.image})` }}
+        role="img"
+        aria-label={blog.title}
+      />
 
       <div className={styles.contentBox}>
         <h1 className={styles.title}>{blog.title}</h1>

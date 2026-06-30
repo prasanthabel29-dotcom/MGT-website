@@ -13,11 +13,19 @@ function HomePage() {
       {/* 🔥 FULL WIDTH BANNER */}
       <BannerSection />
 
-<div className="container">
+<div className="page-container">
   <MissionSection />
-  <Overview />
- <Services showTitle={true} />
-  <TestimonialsSection />
+</div>
+
+      <Overview />
+
+<div className="page-container">
+  <Services showTitle={true} />
+</div>
+
+      <TestimonialsSection />
+
+<div className="page-container">
   <FAQ />
 </div>
     </>

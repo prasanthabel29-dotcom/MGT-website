@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import styles from "./WebsiteHeader.module.css";
 import logo from "../../assets/logo.png";
@@ -8,36 +8,51 @@ function WebsiteHeader() {
 
   const [open, setOpen] = useState(false);
   const [dark, setDark] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+  const [hide, setHide] = useState(false);
 
-  // 🔥 SCROLL DETECT
+  const lastScrollY = useRef(0);
+
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 60);
+      const currentScrollY = window.scrollY;
+
+      if (
+        currentScrollY > lastScrollY.current &&
+        currentScrollY > 80
+      ) {
+        setHide(true);
+      } else {
+        setHide(false);
+      }
+
+      lastScrollY.current = currentScrollY;
     };
 
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+
+    return () =>
+      window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // 🔥 THEME LOAD
   useEffect(() => {
-    const saved = localStorage.getItem("theme");
-    if (saved === "dark") {
+    const savedTheme = localStorage.getItem("theme");
+
+    if (savedTheme === "dark") {
       setDark(true);
       document.documentElement.setAttribute("data-theme", "dark");
+    } else {
+      document.documentElement.setAttribute("data-theme", "light");
     }
   }, []);
 
-  // 🔥 THEME TOGGLE
   const toggleTheme = () => {
     const newTheme = dark ? "light" : "dark";
+
     document.documentElement.setAttribute("data-theme", newTheme);
     localStorage.setItem("theme", newTheme);
     setDark(!dark);
   };
 
-  // 🔥 BODY LOCK
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "auto";
   }, [open]);
@@ -51,71 +66,115 @@ function WebsiteHeader() {
     { name: "Contact", path: "/contact" },
   ];
 
-  return (
-    <header className={`${styles.header} ${scrolled ? styles.scrolled : ""}`}>
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
 
-      {/* LOGO */}
-      <Link to="/" className={styles.logo}>
-        <img src={logo} alt="logo" className={styles.logoImg} />
-        <span className={styles.logoText}>MAJESTY GLOBAL</span>
+  const handleNavClick = () => {
+    scrollToTop();
+    setOpen(false);
+  };
+
+  return (
+    <header
+      className={`${styles.header} ${
+        hide ? styles.hide : ""
+      }`}
+    >
+      <Link to="/" className={styles.logo} onClick={scrollToTop}>
+        <img
+          src={logo}
+          alt="Majesty Global"
+          className={styles.logoImg}
+        />
+
+        <span className={styles.logoText}>
+          <span className={styles.logoTextFull}>
+            MAJESTY GLOBAL TECHNOLOGIES
+          </span>
+          <span className={styles.logoTextShort}>MGT</span>
+        </span>
       </Link>
 
-      {/* NAV */}
       <nav className={styles.nav}>
         {navLinks.map((link) => (
           <Link
             key={link.path}
             to={link.path}
-            className={`${styles.link} ${
-              location.pathname === link.path ? styles.active : ""
-            }`}
+            onClick={scrollToTop}
+            className={
+              location.pathname === link.path
+                ? styles.active
+                : styles.link
+            }
           >
             {link.name}
           </Link>
         ))}
       </nav>
 
-      {/* ACTIONS */}
       <div className={styles.actions}>
-        <button className={styles.iconBtn} onClick={toggleTheme}>
+        <button
+          type="button"
+          className={styles.iconBtn}
+          onClick={toggleTheme}
+          aria-label="Toggle theme"
+        >
           {dark ? "☀️" : "🌙"}
         </button>
 
         <button
-          className={styles.iconBtn}
+          type="button"
+          className={`${styles.iconBtn} ${styles.menuBtn}`}
           onClick={() => setOpen(!open)}
+          aria-label="Open menu"
         >
           ☰
         </button>
 
-        <Link to="/contact" className={styles.button}>
+        <Link
+          to="/contact"
+          className={styles.button}
+          onClick={scrollToTop}
+        >
           Get Started
         </Link>
       </div>
 
-      {/* OVERLAY */}
       {open && (
-        <div className={styles.overlay} onClick={() => setOpen(false)} />
+        <div
+          className={styles.overlay}
+          onClick={() => setOpen(false)}
+        />
       )}
 
-      {/* MOBILE MENU */}
-      <div className={`${styles.mobileMenu} ${open ? styles.show : ""}`}>
+      <div
+        className={`${styles.mobileMenu} ${
+          open ? styles.show : ""
+        }`}
+      >
         {navLinks.map((link) => (
           <Link
             key={link.path}
             to={link.path}
-            onClick={() => setOpen(false)}
+            onClick={handleNavClick}
             className={styles.mobileLink}
           >
             {link.name}
           </Link>
         ))}
 
-        <Link to="/contact" className={styles.mobileButton}>
+        <Link
+          to="/contact"
+          className={styles.mobileButton}
+          onClick={handleNavClick}
+        >
           Get Started
         </Link>
       </div>
-
     </header>
   );
 }

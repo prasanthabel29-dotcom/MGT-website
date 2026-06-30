@@ -26,7 +26,7 @@ function Services({ showTitle = false }) {
     { id: 6, title: "Data Migration", image: img7, desc: "Secure and seamless data migration." },
     { id: 7, title: "Cloud Consulting", image: img8, desc: "Reliable cloud solutions." },
     { id: 8, title: "IT Infrastructure", image: img9, desc: "Enterprise infrastructure solutions." },
-    { id: 9, title: "Staff Augmentation", image: img10, desc: "Scale your team easily." },
+    {id: 9,title: "Talent Acquisition & Staff Augmentation",image: img10,desc: "We specialize in sourcing top-quality talent and scaling teams quickly across IT and Non-IT domains."},
     { id: 10, title: "Branding & Promotions", image: img11, desc: "Build strong brand identity." },
     { id: 11, title: "IoT Services", image: img12, desc: "Smart connected solutions." }
   ];

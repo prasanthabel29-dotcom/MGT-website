@@ -1,0 +1,93 @@
+/* AdminLayout.css */
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+.admin-layout{
+  display:flex;
+  min-height:100vh;
+  font-family:Arial;
+}
+
+/* SIDEBAR */
+
+.sidebar{
+  width:260px;
+  background:#111827;
+  color:white;
+  padding:30px 20px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+
+.logo{
+  font-size:28px;
+  font-weight:bold;
+  margin-bottom:40px;
+}
+
+.menu{
+  display:flex;
+  flex-direction:column;
+  gap:15px;
+}
+
+.menu a{
+  text-decoration:none;
+  color:#d1d5db;
+  padding:14px 16px;
+  border-radius:8px;
+  transition:0.3s;
+  font-size:16px;
+}
+
+.menu a:hover{
+  background:#1f2937;
+  color:white;
+}
+
+.menu .active{
+  background:#2563eb;
+  color:white;
+}
+
+.logout-btn{
+  margin-top:40px;
+  padding:14px;
+  border:none;
+  border-radius:8px;
+  background:#ef4444;
+  color:white;
+  cursor:pointer;
+  font-size:16px;
+}
+
+.logout-btn:hover{
+  opacity:0.9;
+}
+
+/* MAIN */
+
+.main-content{
+  flex:1;
+  background:#f3f4f6;
+}
+
+.topbar{
+  background:white;
+  padding:25px 40px;
+  border-bottom:1px solid #e5e7eb;
+}
+
+.topbar h1{
+  font-size:28px;
+  color:#111827;
+}
+
+.page-content{
+  padding:40px;
+}

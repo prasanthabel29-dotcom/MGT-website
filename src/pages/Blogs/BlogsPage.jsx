@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import bannerImg from "../../assets/blogbanner.jpg";
 import blog1 from "../../assets/AI.jpg";
 import blog2 from "../../assets/Startup.jpg";
+import blog3 from "../../assets/consulting.jpg";
 
 function BlogsPage() {
   const navigate = useNavigate();
@@ -28,13 +29,12 @@ function BlogsPage() {
       image: blog2,
     },
     {
-      id: 1,
-      title:
-        "The Rise of AI in Business: How Companies Are Leveraging Artificial Intelligence for Growth",
-      desc: "Discover a powerful tool that revolutionizes growth, efficiency and innovation across all sectors...",
-      date: "12/01/2024",
-      author: "Anju",
-      image: blog1,
+      id: 3,
+      title: "Why Cloud Consulting Matters for Modern Businesses",
+      desc: "Moving to the cloud is no longer optional — learn how the right strategy helps companies scale faster and cut costs...",
+      date: "18/03/2025",
+      author: "Prasanth",
+      image: blog3,
     },
   ];
 
@@ -42,9 +42,10 @@ function BlogsPage() {
     <div>
 
       {/* 🔥 BANNER */}
-      <div className={styles.banner}>
-        <img src={bannerImg} alt="banner" />
-
+      <div
+        className={styles.banner}
+        style={{ backgroundImage: `url(${bannerImg})` }}
+      >
         <div className={styles.overlay}>
           <h1>Blogs</h1>
         </div>
@@ -67,8 +68,12 @@ function BlogsPage() {
               onClick={() => navigate(`/blogs/${blog.id}`)}
             >
               {/* IMAGE */}
-              <div className={styles.imageBox}>
-                <img src={blog.image} alt="" />
+              <div
+                className={styles.imageBox}
+                style={{ backgroundImage: `url(${blog.image})` }}
+                role="img"
+                aria-label={blog.title}
+              >
                 <span className={styles.author}>{blog.author}</span>
               </div>
 
