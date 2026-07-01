@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 // 🔥 same images
 import img1 from "../../../../assets/User-Centered Design.jpg";
@@ -9,7 +9,6 @@ import img4 from "../../../../assets/Scalable Architecture.jpg";
 import img5 from "../../../../assets/Security & Data Protection.jpg";
 function PortfolioDetails() {
   const { id } = useParams();
-  const navigate = useNavigate();
 
   const data = [
     {

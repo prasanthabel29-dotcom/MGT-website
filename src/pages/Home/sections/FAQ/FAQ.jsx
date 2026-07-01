@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { useNavigate } from "react-router-dom";
 import styles from "./FAQ.module.css";
 
 const faqs = [
@@ -24,7 +23,6 @@ const faqs = [
 
 function FAQ() {
   const [active, setActive] = useState(0);
-  const navigate = useNavigate();
 
   const toggleFAQ = (index) => {
     setActive(active === index ? null : index);

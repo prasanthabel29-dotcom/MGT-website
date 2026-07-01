@@ -1,5 +1,3 @@
-import apiClient from './apiClient';
-
 // Helper to simulate network delay
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -35,7 +33,7 @@ export const authService = {
   /**
    * Refreshes the access token using the refresh token.
    */
-  refreshToken: async (refreshToken) => {
+  refreshToken: async () => {
     await delay(500);
     return { token: 'mock-new-jwt-token' };
   },

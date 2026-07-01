@@ -59,7 +59,7 @@ function LoginPage() {
       </form>
 
       <p className={styles.footer}>
-        Don't have an account? <Link to="/register">Register</Link>
+        Don&apos;t have an account? <Link to="/register">Register</Link>
       </p>
     </div>
   );

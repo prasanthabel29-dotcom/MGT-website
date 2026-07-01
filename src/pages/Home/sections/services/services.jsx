@@ -40,7 +40,7 @@ function Services({ showTitle = false }) {
           <div className={styles.titleWrap}>
             <h1 className={styles.heading}>Our Services</h1>
             <h2 className={styles.subHeading}>
-              We're passionate about Technology & Innovations
+              We&apos;re passionate about Technology & Innovations
             </h2>
           </div>
         )}

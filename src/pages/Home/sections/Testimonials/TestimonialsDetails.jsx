@@ -34,11 +34,11 @@ function TestimonialsDetails() {
 ];
   const index = parseInt(id, 10);
 
-  if (isNaN(index) || index < 0 || index >= data.length) {
+  if (isNaN(index) || index < 0 || index >= testimonials.length) {
     return <h2 style={{ textAlign: "center" }}>Page Not Found</h2>;
   }
 
-  const item = data[index];
+  const item = testimonials[index];
 
   return (
     <div
@@ -56,7 +56,7 @@ function TestimonialsDetails() {
       <h1 style={{ marginTop: "20px" }}>{item.name}</h1>
 
       <p style={{ marginTop: "20px", fontSize: "18px" }}>
-        {item.full}
+        {item.text}
       </p>
     </div>
   );

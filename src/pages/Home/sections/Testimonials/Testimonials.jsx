@@ -74,7 +74,7 @@ function TestimonialsSection() {
           <div className={styles.stars}>★★★★★</div>
 
           <p className={styles.text}>
-            "{data[index].text}"
+            &ldquo;{data[index].text}&rdquo;
           </p>
 
           <h4>{data[index].name}</h4>
