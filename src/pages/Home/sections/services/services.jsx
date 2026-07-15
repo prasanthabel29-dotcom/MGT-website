@@ -1,21 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styles from "./services.module.css";
-
-import img1 from "../../../../assets/Custom Software Development.jpg.png";
-import img2 from "../../../../assets/Mobile Application Development.jpg";
-import img3 from "../../../../assets/Website Development.jpg";
-import img4 from "../../../../assets/SEO & Digital Marketing.jpg";
-import img5 from "../../../../assets/Application Maintenance.jpg";
-import img6 from "../../../../assets/System Re-Engineering.jpg";
-import img7 from "../../../../assets/Data Migration.jpg";
-import img8 from "../../../../assets/Cloud Consulting.jpg";
-import img9 from "../../../../assets/IT Infrastructure.jpg";
-import img10 from "../../../../assets/Staff Augmentation.jpg";
-import img11 from "../../../../assets/Branding & Promotions.jpg";
-import img12 from "../../../../assets/IOT services1.jpg";
+import { servicesList } from "./servicesData";
 
 function Services({ showTitle = false }) {
+<<<<<<< HEAD
   const services = [
     { id: 0, title: "Custom Software Development", image: img1, desc: "We build scalable and secure custom software tailored for your business." },
     { id: 1, title: "Mobile App Development", image: img2, desc: "High-performance Android & iOS apps with modern UI/UX." },
@@ -33,11 +22,11 @@ function Services({ showTitle = false }) {
 
   ];
 
+=======
+>>>>>>> dec63d0 (mgt)
   return (
     <section className={styles.services}>
       <div className={styles.container}>
-
-        {/* ✅ SHOW ONLY IN HOMEPAGE */}
         {showTitle && (
           <div className={styles.titleWrap}>
             <h1 className={styles.heading}>Our Services</h1>
@@ -48,14 +37,13 @@ function Services({ showTitle = false }) {
         )}
 
         <div className={styles.grid}>
-          {services.map((item) => (
+          {servicesList.map((item) => (
             <Link
               to={`/services/${item.id}`}
               key={item.id}
               className={styles.card}
             >
               <img src={item.image} alt={item.title} />
-
               <h3>{item.title}</h3>
 
               <div className={styles.overlay}>
@@ -67,7 +55,6 @@ function Services({ showTitle = false }) {
             </Link>
           ))}
         </div>
-
       </div>
     </section>
   );

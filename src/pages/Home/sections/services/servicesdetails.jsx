@@ -1,64 +1,38 @@
 import React, { useEffect, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import styles from "./servicesdetails.module.css";
-
-import img1 from "../../../../assets/Custom Software Development.jpg.png";
-import img2 from "../../../../assets/Mobile Application Development.jpg";
-import img3 from "../../../../assets/Website Development.jpg";
-import img4 from "../../../../assets/SEO & Digital Marketing.jpg";
-import img5 from "../../../../assets/Application Maintenance.jpg";
-import img6 from "../../../../assets/System Re-Engineering.jpg";
-import img7 from "../../../../assets/Data Migration.jpg";
-import img8 from "../../../../assets/Cloud Consulting.jpg";
-import img9 from "../../../../assets/IT Infrastructure.jpg";
-import img10 from "../../../../assets/Staff Augmentation.jpg";
-import img11 from "../../../../assets/Branding & Promotions.jpg";
-import img12 from "../../../../assets/IOT services1.jpg";
+import { servicesList } from "./servicesData";
 
 function ServiceDetails() {
-
   const { id } = useParams();
-
   const navigate = useNavigate();
-
   const cardRef = useRef(null);
 
-  /* SCROLL ANIMATION */
-
   useEffect(() => {
-
     const el = cardRef.current;
-
     const observer = new IntersectionObserver(
       ([entry]) => {
-
         if (entry.isIntersecting) {
           el.classList.add(styles.show);
         }
-
       },
       { threshold: 0.2 }
     );
 
     if (el) observer.observe(el);
-
     return () => observer.disconnect();
-
   }, []);
 
-  /* SCROLL TOP */
-
   useEffect(() => {
-
     window.scrollTo({
       top: 0,
       behavior: "smooth",
     });
-
   }, [id]);
 
-  const services = [
+  const service = servicesList.find((s) => s.id === parseInt(id, 10));
 
+<<<<<<< HEAD
     {
       id: 0,
       title: "Custom Software Development",
@@ -234,63 +208,36 @@ function ServiceDetails() {
     );
 
   if (!service)
+=======
+  if (!service) {
+>>>>>>> dec63d0 (mgt)
     return <h2>Service Not Found</h2>;
+  }
 
   return (
-
     <div className={styles.container}>
-
-      {/* BACK BUTTON */}
-
       <div className={styles.topBar}>
-
-        <button
-          onClick={() => navigate(-1)}
-          className={styles.back}
-        >
+        <button onClick={() => navigate(-1)} className={styles.back}>
           ← Back
         </button>
-
       </div>
 
-      {/* CARD */}
-
-      <div
-        ref={cardRef}
-        className={styles.card}
-      >
-
+      <div ref={cardRef} className={styles.card}>
         <div className={styles.imageWrap}>
-
-          <img
-            src={service.image}
-            alt={service.title}
-          />
-
+          <img src={service.image} alt={service.title} />
         </div>
 
         <div className={styles.content}>
-
           <h1>{service.title}</h1>
-
           <p>{service.desc}</p>
 
           <ul>
-
             {service.points.map((p, i) => (
-
-              <li key={i}>
-                ✓ {p}
-              </li>
-
+              <li key={i}>✓ {p}</li>
             ))}
-
           </ul>
-
         </div>
-
       </div>
-
     </div>
   );
 }

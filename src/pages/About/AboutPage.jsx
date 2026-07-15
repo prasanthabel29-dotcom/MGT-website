@@ -96,13 +96,14 @@ export default function AboutPage() {
         <div className="services">
           {services.map((s, i) => (
             <div className="service-row" key={i}>
-              <div className={`icon-hex color-${i}`}>
+              <div className={`service-icon color-${i}`}>
                 <img src={s.icon} alt={s.title} />
               </div>
 
-              <div className="service-title">{s.title}</div>
-
-              <div className="service-desc">{s.desc}</div>
+              <div className="service-content">
+                <h4 className="service-title">{s.title}</h4>
+                <p className="service-desc">{s.desc}</p>
+              </div>
             </div>
           ))}
         </div>

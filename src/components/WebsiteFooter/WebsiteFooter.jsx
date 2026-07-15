@@ -29,8 +29,12 @@ const footerServices = [
   { id: 9, title: "Talent Acquisition & Staff Augmentation" },
   { id: 10, title: "Branding & Promotions" },
   { id: 11, title: "IoT Services" },
+<<<<<<< HEAD
   { id: 12, title: "Cybersecurity" },
 
+=======
+  { id: 12, title: "Cybersecurity Services" },
+>>>>>>> dec63d0 (mgt)
 ];
 
 function WebsiteFooter() {
