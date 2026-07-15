@@ -213,6 +213,18 @@ function ServiceDetails() {
         "Monitoring",
         "Analytics"
       ]
+    },
+    {
+      id: 12,
+      title: "Cyber Security",
+      image: img12,
+      desc: "Protect your digital assets.",
+      points: [
+        "Endpoint Security",
+        "Vulnerability Testing",
+        "24/7 Monitoring",
+        "Incident Response"
+      ]
     }
   ];
 

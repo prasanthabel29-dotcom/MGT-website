@@ -28,7 +28,9 @@ function Services({ showTitle = false }) {
     { id: 8, title: "IT Infrastructure", image: img9, desc: "Enterprise infrastructure solutions." },
     {id: 9,title: "Talent Acquisition & Staff Augmentation",image: img10,desc: "We specialize in sourcing top-quality talent and scaling teams quickly across IT and Non-IT domains."},
     { id: 10, title: "Branding & Promotions", image: img11, desc: "Build strong brand identity." },
-    { id: 11, title: "IoT Services", image: img12, desc: "Smart connected solutions." }
+    { id: 11, title: "IoT Services", image: img12, desc: "Smart connected solutions." },
+    { id: 12, title: "Cyber Security", image: img12, desc: "Protect your digital assets." }
+
   ];
 
   return (

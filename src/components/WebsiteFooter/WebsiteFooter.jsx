@@ -29,6 +29,8 @@ const footerServices = [
   { id: 9, title: "Talent Acquisition & Staff Augmentation" },
   { id: 10, title: "Branding & Promotions" },
   { id: 11, title: "IoT Services" },
+  { id: 12, title: "Cybersecurity" },
+
 ];
 
 function WebsiteFooter() {
@@ -175,7 +177,7 @@ function WebsiteFooter() {
 
       {/* BOTTOM */}
       <div className={styles.bottom}>
-        © 2026 MAJESTY GLOBAL Pvt Ltd.
+        © 2026 MAJESTY GLOBAL TECHNOLOGIES Pvt Ltd.
         Innovate. Build. Grow.
         All rights reserved.
       </div>
