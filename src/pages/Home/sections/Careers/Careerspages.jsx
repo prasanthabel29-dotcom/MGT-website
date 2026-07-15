@@ -2,7 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import styles from "./Careerspages.module.css";
-import bannerImg from "../../../../assets/careers.jpg";
+import bannerImg from "../../../../assets/Careers.jpg";
 
 function CareersPage() {
   return (
